@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Viktor Rackov - Curriculum Vitae</title>
     <style>
         :root {
@@ -134,6 +134,29 @@
             font-weight: bold;
         }
 
+        /* Language selector in top right corner */
+        #language-selector {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+        }
+
+        #language-selector button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.25rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        #language-selector button.active {
+            background-color: var(--accent-color);
+        }
+
         @media (max-width: 768px) {
             body {
                 padding: 1rem;
@@ -162,6 +185,12 @@
 </head>
 
 <body>
+    <!-- Language selector in top right corner -->
+    <div id="language-selector">
+        <button onclick="setLanguage('eng')" id="eng-btn">ENG</button>
+        <button onclick="setLanguage('slo')" id="slo-btn">SLO</button>
+    </div>
+
     <header>
         <h1>Viktor Rackov</h1>
         <div class="contact-links">
@@ -176,73 +205,206 @@
         </div>
     </header>
 
+    <!-- Education Section -->
     <section class="section">
-        <h2>Education</h2>
+        <h2>
+            <span data-lang="eng">Education</span>
+            <span data-lang="slo" style="display: none;">Izobraževanje</span>
+        </h2>
         <div class="item">
-            <h3>University of Maribor - FERI (Faculty of Electrical Engineering and Computer Science)</h3>
+            <h3>
+                <span data-lang="eng">University of Maribor - FERI (Faculty of Electrical Engineering and Computer
+                    Science)</span>
+                <span data-lang="slo" style="display: none;">Univerza v Mariboru - FERI (Fakulteta za elektrotehniko in
+                    računalništvo)</span>
+            </h3>
             <span class="date">2024 - Present</span>
-            <p>Računalništvo in informacijske tehnologije (Computer Science and Information Technologies)</p>
+            <p>
+                <span data-lang="eng">Computer Science and Information Technologies</span>
+                <span data-lang="slo" style="display: none;">Računalništvo in informacijske tehnologije</span>
+            </p>
         </div>
         <div class="item">
-            <h3>Subotica Tech - College of Applied Sciences</h3>
+            <h3>
+                <span data-lang="eng">Subotica Tech - College of Applied Sciences</span>
+                <span data-lang="slo" style="display: none;">Subotica Tech - College of Applied Sciences</span>
+            </h3>
             <span class="date">2020 - 2024</span>
-            <p>Bachelor in Computer Science<br>Valedictorian - Student of Generation</p>
+            <p>
+                <span data-lang="eng">
+                    Bachelor in Computer Science<br>
+                    Valedictorian - Student of Generation
+                </span>
+                <span data-lang="slo" style="display: none;">
+                    1. Stopnja Computer Science <br>
+                    Najboljši študent - Študent generacije
+                </span>
+            </p>
         </div>
         <div class="item">
-            <h3>Technical School "Ivan Sarić" Subotica</h3>
+            <h3>
+                <span data-lang="eng">Technical School "Ivan Sarić" Subotica</span>
+                <span data-lang="slo" style="display: none;">Tehniška šola "Ivan Sarić" Subotica</span>
+            </h3>
             <span class="date">2016 - 2020</span>
-            <p>Road Traffic Technician</p>
         </div>
     </section>
 
+    <!-- Experience Section -->
     <section class="section">
-        <h2>Experience</h2>
+        <h2>
+            <span data-lang="eng">Experience</span>
+            <span data-lang="slo" style="display: none;">Izkušnje</span>
+        </h2>
         <div class="item">
-            <h3>Telemetry and Communication Engineer - Aeronavtično društvo Univerze v Mariboru (ADUM)</h3>
+            <h3>
+                <span data-lang="eng">Telemetry and Communication Engineer - Aeronavtično društvo Univerze v Mariboru
+                    (ADUM)</span>
+                <span data-lang="slo" style="display: none;">Inženir telemetrije in komunikacij - Aeronavtično društvo
+                    Univerze v Mariboru (ADUM)</span>
+            </h3>
             <span class="date">Oct 2024 - Present</span>
             <p>Maribor, Slovenia</p>
-            <p>Responsible for data transmission between aircraft and ground stations for the Design/Build/Fly (DBF)
-                competition organized by the American Institute of Aeronautics and Astronautics (AIAA).</p>
+            <p>
+                <span data-lang="eng">
+                    Responsible for data transmission between aircraft and ground stations for the Design/Build/Fly
+                    (DBF)
+                    competition organized by the American Institute of Aeronautics and Astronautics (AIAA).
+                </span>
+                <span data-lang="slo" style="display: none;">
+                    Odgovoren za prenos podatkov med letalom in zemeljskimi postajami za tekmovanje Design/Build/Fly
+                    (DBF), ki ga organizira
+                    Ameriški inštitut za aeronavtiko in astronavtiko (AIAA).
+                </span>
+            </p>
         </div>
-
         <div class="item">
-            <h3>J1 Cultural Exchange Program</h3>
-            <span class="date">Summer of 2022 & 2023</span>
-            <p>United States<br>Two summer exchange programs (2022 and 2023)</p>
+            <h3>
+                <span data-lang="eng">J1 Cultural Exchange Program</span>
+                <span data-lang="slo" style="display: none;">Kulturni izmenjevalni program J1</span>
+            </h3>
+            <span class="date">Summer of 2022 &amp; 2023</span>
+            <p>
+                <span data-lang="eng">
+                    United States<br>
+                    Main raw bar cook at a seafood restaurant on Martha's Vineyard, Massachusetts.
+                </span>
+                <span data-lang="slo" style="display: none;">
+                    Združene države Amerike<br>
+                    Glavni kuhar surovega bara v morski restavraciji na Martha's Vineyard, Massachusetts.
+                </span>
+            </p>
         </div>
         <div class="item">
-            <h3>Web Developer Intern - Infostud</h3>
+            <h3>
+                <span data-lang="eng">Web Developer Intern - Infostud</span>
+                <span data-lang="slo" style="display: none;">Pripravnik za spletni razvoj - Infostud</span>
+            </h3>
             <span class="date">Dec 2021 - Dec 2022</span>
-            <p>Subotica, Serbia</p>
+            <p>
+                <span data-lang="eng">Subotica, Serbia</span>
+                <span data-lang="slo" style="display: none;">Subotica, Srbija</span>
+            </p>
+            <p>
+                <span data-lang="eng">Worked with React for front-end development and built backend functionalities
+                    using Symfony.</span>
+                <span data-lang="slo" style="display: none;">Delal sem z Reactom za razvoj sprednjega dela in gradil
+                    backend funkcionalnosti s Symfony.</span>
+            </p>
         </div>
     </section>
 
-
+    <!-- Volunteering Section -->
     <section class="section">
-        <h2>Volunteering</h2>
+        <h2>
+            <span data-lang="eng">Volunteering</span>
+            <span data-lang="slo" style="display: none;">Prostovoljno delo</span>
+        </h2>
         <div class="item">
-            <h3>Volonteer for Subotica Tech College</h3>
+            <h3>
+                <span data-lang="eng">Volunteer for Subotica Tech College</span>
+                <span data-lang="slo" style="display: none;">Prostovoljec na Subotiški Tehniki</span>
+            </h3>
             <span class="date">2020 - 2024</span>
-            <p>Volonteer for events and orientation programs for high school students</p>
+            <p>
+                <span data-lang="eng">
+                    Volunteer for events and orientation programs for high school students
+                </span>
+                <span data-lang="slo" style="display: none;">
+                    Prostovoljec za dogodke in orientacijske programe za dijake
+                </span>
+            </p>
         </div>
         <div class="item">
-            <h3>Subotica 2030 Initiative</h3>
+            <h3>
+                <span data-lang="eng">Subotica 2030 Initiative</span>
+                <span data-lang="slo" style="display: none;">Iniciativa Subotica 2030</span>
+            </h3>
             <span class="date">2022 - 2023</span>
         </div>
     </section>
 
+    <!-- Scholarships & Awards Section -->
     <section class="section">
-        <h2>Scholarships & Awards</h2>
+        <h2>
+            <span data-lang="eng">Scholarships &amp; Awards</span>
+            <span data-lang="slo" style="display: none;">Štipendije in nagrade</span>
+        </h2>
         <ul>
-            <li>Valedictorian - Student of the Generation (Subotica Tech 2023)</li>
-            <li>Best Student Award - Applied Colleges (VISER 2023)</li>
-            <li>State Scholarship (2021-2023)</li>
-            <li>CEEPUS Exchange Program Scholarship (2022)</li>
-            <li>Young Talents Award Subotica (2022)</li>
-            <li>City Scholarship (2021-2022)</li>
-            <li>Infostud Scholarship (2021-2022)</li>
+            <li>
+                <span data-lang="eng">Valedictorian - Student of the Generation (Subotica Tech 2023)</span>
+                <span data-lang="slo" style="display: none;">Najboljši študent - Študent generacije (Subotica Tech
+                    2023)</span>
+            </li>
+            <li>
+                <span data-lang="eng">Best Student Award - Applied Colleges (VISER 2023)</span>
+                <span data-lang="slo" style="display: none;">Nagrada za najboljšega študenta - Višje strokovne šole
+                    (VISER 2023)</span>
+            </li>
+
+            <li>
+                <span data-lang="eng">State Scholarship (2021-2023)</span>
+                <span data-lang="slo" style="display: none;">Državna štipendija (2021-2023)</span>
+            </li>
+            <li>
+                <span data-lang="eng">CEEPUS Exchange Program Scholarship (2022)</span>
+                <span data-lang="slo" style="display: none;">Štipendija za CEEPUS izmenjevalni program (2022)</span>
+            </li>
+            <li>
+                <span data-lang="eng">Young Talents Award Subotica (2022)</span>
+                <span data-lang="slo" style="display: none;">Nagrada za mlade talente Subotica (2022)</span>
+            </li>
+            <li>
+                <span data-lang="eng">City Scholarship (2021-2022)</span>
+                <span data-lang="slo" style="display: none;">Mestna štipendija (2021-2022)</span>
+            </li>
+            <li>
+                <span data-lang="eng">Infostud Scholarship (2021-2022)</span>
+                <span data-lang="slo" style="display: none;">Infostud štipendija (2021-2022)</span>
+            </li>
         </ul>
     </section>
+
+    <script>
+        // Default language is English.
+        let currentLang = 'eng';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            // Toggle display for all elements with the data-lang attribute.
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                el.style.display = (el.getAttribute('data-lang') === lang) ? 'inline' : 'none';
+            });
+            // Highlight the active button.
+            document.getElementById('eng-btn').classList.toggle('active', lang === 'eng');
+            document.getElementById('slo-btn').classList.toggle('active', lang === 'slo');
+        }
+
+        // Set the default language on page load.
+        window.onload = function () {
+            setLanguage(currentLang);
+        };
+    </script>
 </body>
 
 </html>
