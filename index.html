@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viktor Rackov - Curriculum Vitae</title>
+    <style>
+        :root {
+            --primary-color: #2B3A55;
+            --accent-color: #3F88C5;
+            --background-color: #F8F9FA;
+            --text-color: #2B2D42;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            padding: 2rem 0;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin: 0.5rem 0;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            color: var(--accent-color);
+            margin: 2rem 0 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 500;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        h2::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-2px);
+        }
+
+        .item {
+            margin-bottom: 1.8rem;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        .item::before {
+            content: "•";
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .date {
+            float: right;
+            color: #6C757D;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            padding: 0.3rem 0;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .contact-group {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .contact-group a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-links a::before {
+            content: "> ";
+            color: var(--accent-color);
+            font-family: monospace;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .date {
+                float: none;
+                display: block;
+                margin-top: 0.3rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 1rem;
+            }
+
+            .contact-group {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Viktor Rackov</h1>
+        <div class="contact-links">
+            <div class="contact-group">
+                <a href="mailto:rotkiv.r@gmail.com">rotkiv.r@gmail.com</a>
+                <a href="mailto:viktor.rackov@student.um.si">viktor.rackov@student.um.si</a>
+            </div>
+            <div class="contact-group">
+                <a href="tel:+381659444991">+381 65 9444 991</a>
+                <a href="tel:+38669788364">+386 69 788 364</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="section">
+        <h2>Education</h2>
+        <div class="item">
+            <h3>University of Maribor - FERI (Faculty of Electrical Engineering and Computer Science)</h3>
+            <span class="date">2024 - Present</span>
+            <p>Računalništvo in informacijske tehnologije (Computer Science and Information Technologies)</p>
+        </div>
+        <div class="item">
+            <h3>Subotica Tech - College of Applied Sciences</h3>
+            <span class="date">2020 - 2024</span>
+            <p>Bachelor in Computer Science<br>Valedictorian - Student of Generation</p>
+        </div>
+        <div class="item">
+            <h3>Technical School "Ivan Sarić" Subotica</h3>
+            <span class="date">2016 - 2020</span>
+            <p>Road Traffic Technician</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Experience</h2>
+        <div class="item">
+            <h3>Telemetry and Communication Engineer - Aeronavtično društvo Univerze v Mariboru (ADUM)</h3>
+            <span class="date">Oct 2024 - Present</span>
+            <p>Maribor, Slovenia</p>
+            <p>Responsible for data transmission between aircraft and ground stations for the Design/Build/Fly (DBF)
+                competition organized by the American Institute of Aeronautics and Astronautics (AIAA).</p>
+        </div>
+
+        <div class="item">
+            <h3>J1 Cultural Exchange Program</h3>
+            <span class="date">Summer of 2022 & 2023</span>
+            <p>United States<br>Two summer exchange programs (2022 and 2023)</p>
+        </div>
+        <div class="item">
+            <h3>Web Developer Intern - Infostud</h3>
+            <span class="date">Dec 2021 - Dec 2022</span>
+            <p>Subotica, Serbia</p>
+        </div>
+    </section>
+
+
+    <section class="section">
+        <h2>Volunteering</h2>
+        <div class="item">
+            <h3>Volonteer for Subotica Tech College</h3>
+            <span class="date">2020 - 2024</span>
+            <p>Volonteer for events and orientation programs for high school students</p>
+        </div>
+        <div class="item">
+            <h3>Subotica 2030 Initiative</h3>
+            <span class="date">2022 - 2023</span>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Scholarships & Awards</h2>
+        <ul>
+            <li>Valedictorian - Student of the Generation (Subotica Tech 2023)</li>
+            <li>Best Student Award - Applied Colleges (VISER 2023)</li>
+            <li>State Scholarship (2021-2023)</li>
+            <li>CEEPUS Exchange Program Scholarship (2022)</li>
+            <li>Young Talents Award Subotica (2022)</li>
+            <li>City Scholarship (2021-2022)</li>
+            <li>Infostud Scholarship (2021-2022)</li>
+        </ul>
+    </section>
+</body>
+
+</html>
