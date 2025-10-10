@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="../VR.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gym Performance Evaluation Device | Viktor Rackov</title>
+    <style>
+        :root {
+            --primary-color: #2B3A55;
+            --accent-color: #3F88C5;
+            --background-color: #F8F9FA;
+            --text-color: #2B2D42;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin: 0.5rem 0;
+            font-weight: 600;
+        }
+
+        h2 {
+            color: var(--accent-color);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            font-weight: 500;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        h2::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        p {
+            margin: 0.8rem 0;
+        }
+
+        ul {
+            margin-top: 0.5rem;
+            padding-left: 1.2rem;
+        }
+
+        li {
+            margin: 0.4rem 0;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        .project-button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .project-button:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            border-top: 2px solid #ddd;
+            padding-top: 1rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        img.preview {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            margin: 1rem 0;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .section {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Gym Performance Evaluation Device</h1>
+        <p><strong>Embedded Fitness Device | 2025</strong></p>
+    </header>
+
+    <section class="section">
+        <h2>Overview</h2>
+        <p>
+            This project introduces a compact embedded device designed to measure and analyze user performance on gym
+            cable
+            machines. It combines <b>force sensing</b> and <b>motion tracking</b> to evaluate workout phases in real
+            time,
+            offering precise insights into exercise form and efficiency.
+        </p>
+        <p>
+            The system connects wirelessly to a <b>React Native + TypeScript mobile app</b>, where live data
+            visualization,
+            workout logging, and automatic phase recognition help users and trainers monitor strength performance more
+            effectively.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>Key Features</h2>
+        <ul>
+            <li>Wireless real-time data transmission to mobile app</li>
+            <li>Embedded algorithm for detecting movement phases</li>
+            <li>High-resolution force and motion tracking</li>
+            <li>Mobile dashboard for exercise visualization and analytics</li>
+            <li>Configurable profiles and local data logging</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>Technology Stack</h2>
+        <ul>
+            <li><b>Microcontroller:</b> ESP32-WROOM-32E</li>
+            <li><b>Sensors:</b> Load cell amplifier, 6-axis IMU</li>
+            <li><b>Firmware:</b> C++ (ESP-IDF + FreeRTOS)</li>
+            <li><b>Mobile App:</b> React Native, TypeScript, WatermelonDB</li>
+            <li><b>Data Storage:</b> LittleFS (on-device), Local SQLite (mobile)</li>
+            <li><b>3D Design:</b> Onshape + Elegoo Saturn 4 Ultra resin printing</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>Gallery</h2>
+
+        <h3 style="color:#2B3A55; margin-top:1.2rem;">Housing V2 (Current Version)</h3>
+        <img src="./images/HousingV2.png" alt="Housing V2 prototype" class="preview" />
+        <img src="./images/HousingV2TOP.png" alt="Housing V2 top view" class="preview" />
+
+        <h3 style="color:#2B3A55; margin-top:1.8rem;">Housing V1 (Initial Prototype)</h3>
+        <p>The first resin-printed prototype used for mechanical validation and early sensor testing.</p>
+        <img src="./images/Housing.png" alt="Housing V1 prototype" class="preview" />
+
+        <h3 style="color:#2B3A55; margin-top:1.8rem;">PCB Design</h3>
+        <p>The custom 4-layer PCB</p>
+        <div style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center;">
+            <img src="./images/PCBFront.png" alt="PCB front view"
+                style="width:48%; border-radius:8px; box-shadow:0 2px 12px rgba(0,0,0,0.1);" />
+            <img src="./images/PCBBack.png" alt="PCB back view"
+                style="width:48%; border-radius:8px; box-shadow:0 2px 12px rgba(0,0,0,0.1);" />
+        </div>
+    </section>
+
+    <section class="section">
+
+        <a href="../index.html" class="project-button">← Back to CV</a>
+
+    </section>
+
+    <footer>
+        © 2025 Viktor Rackov | <a href="https://viktorrackov.com" target="_blank">viktorrackov.com</a>
+    </footer>
+</body>
+
+</html>

@@ -187,6 +187,36 @@
                 display: block !important;
             }
         }
+
+        .project-button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .project-button:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .project-button.small {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            border-top: 2px solid #ddd;
+            padding-top: 1rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
     </style>
 </head>
 
@@ -381,6 +411,69 @@
             </p>
         </div>
     </section>
+    <!-- Recent Projects Section -->
+
+    <section class="section">
+        <h2>
+            <span data-lang="eng">Recent Projects</span>
+            <span data-lang="slo" style="display: none;">Nedavni projekti</span>
+        </h2>
+
+        <!-- Project 1 -->
+        <div class="item">
+            <strong>Gym Performance Evaluation Device for Cable Machines</strong> <span class="date">2025</span>
+            <p>
+                <span data-lang="eng">
+                    Compact embedded device designed to measure and analyze user performance on gym cable machines.
+                    It combines force and motion sensing to detect exercise phases in real time,
+                    with wireless data streaming to a React Native + TypeScript mobile app for live visualization and
+                    tracking.
+                </span>
+                <span data-lang="slo" style="display:none;">
+                    Kompaktna vgrajena naprava za merjenje in analizo gibanja na fitnes napravah s kabli.
+                    Združuje senzorje sile in gibanja za zaznavanje faz vadbe v realnem času
+                    ter brezžično pošilja podatke v mobilno aplikacijo, razvito v React Native + TypeScript, za prikaz
+                    in sledenje vadbe.
+                </span>
+            </p>
+            <div style="text-align:center; margin-top:0.8rem;">
+                <a href="http://127.0.0.1:5500/projects/gym-device.html" class="project-button small">
+                    <span data-lang="eng">Learn More</span>
+                    <span data-lang="slo" style="display:none;">Več o projektu</span>
+                </a>
+            </div>
+        </div>
+
+
+        <!-- Project 2 -->
+        <div class="item">
+            <strong>ADUM Ground Station</strong> <span class="date">2025</span>
+            <p>
+                <span data-lang="eng">
+                    Real-time telemetry dashboard for aircraft using WebSocket communication and a React front-end with
+                    live maps, data charts, and event logs.
+                </span>
+                <span data-lang="slo" style="display:none;">
+                    Nadzorna postaja za letala s prikazom telemetrije v realnem času prek WebSocket komunikacije in
+                    React vmesnika z zemljevidi, grafikoni in dogodki.
+                </span>
+            </p>
+            <div style="text-align:center; margin-top:0.8rem;">
+                <a href="https://viktorrackov.com/projects/adum-ground-station" target="_blank"
+                    class="project-button small">
+                    <span data-lang="eng">Learn More</span>
+                    <span data-lang="slo" style="display:none;">Več o projektu</span>
+                </a>
+            </div>
+        </div>
+
+
+
+
+    </section>
+
+
+
 
     <!-- Volunteering Section -->
     <section class="section">
@@ -455,6 +548,9 @@
             </li>
         </ul>
     </section>
+    <footer>
+        © 2025 Viktor Rackov | <a href="https://viktorrackov.com" target="_blank">viktorrackov.com</a>
+    </footer>
 
     <script>
         // Default language is English.
