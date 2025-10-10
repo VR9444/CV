@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="../VR.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ADUM Ground Station | Viktor Rackov</title>
+    <style>
+        :root {
+            --primary-color: #2B3A55;
+            --accent-color: #3F88C5;
+            --background-color: #F8F9FA;
+            --text-color: #2B2D42;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin: 0.5rem 0;
+            font-weight: 600;
+        }
+
+        h2 {
+            color: var(--accent-color);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            font-weight: 500;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        h2::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        p {
+            margin: 0.8rem 0;
+        }
+
+        ul {
+            margin-top: 0.5rem;
+            padding-left: 1.2rem;
+        }
+
+        li {
+            margin: 0.4rem 0;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        iframe {
+            width: 100%;
+            height: 400px;
+            border-radius: 8px;
+            border: none;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            margin: 1rem 0;
+        }
+
+        .project-button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .project-button:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            border-top: 2px solid #ddd;
+            padding-top: 1rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        img.preview {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            margin: 1rem 0;
+        }
+
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .image-grid img {
+            width: 48%;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        #language-selector {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+        }
+
+        #language-selector button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.25rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        #language-selector button.active {
+            background-color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .section {
+                padding: 1rem;
+            }
+
+            .image-grid img {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="language-selector">
+        <button onclick="setLanguage('eng')" id="eng-btn">ENG</button>
+        <button onclick="setLanguage('slo')" id="slo-btn">SLO</button>
+    </div>
+
+    <header>
+        <h1>
+            <span data-lang="eng">ADUM Ground Station</span>
+            <span data-lang="slo" style="display:none;">ADUM Zemeljska postaja</span>
+        </h1>
+        <p><strong>
+                <span data-lang="eng">ESP-NOW Telemetry System | 2025</span>
+                <span data-lang="slo" style="display:none;">ESP-NOW telemetrijski sistem | 2025</span>
+            </strong></p>
+    </header>
+
+    <section class="section">
+        <h2>
+            <span data-lang="eng">Overview</span>
+            <span data-lang="slo" style="display:none;">Pregled</span>
+        </h2>
+        <p>
+            <span data-lang="eng">
+                The <b>ADUM Ground Station</b> is a telemetry and configuration platform developed for the AIAA
+                Design/Build/Fly aircraft at the <b>Aeronautical Society of the University of Maribor</b>.
+                It provides <b>real-time monitoring</b> and <b>in-flight parameter tuning</b> for an autonomous aircraft.
+            </span>
+            <span data-lang="slo" style="display:none;">
+                <b>ADUM Zemeljska postaja</b> je telemetrijska in konfiguracijska platforma, razvita za letalo projekta
+                AIAA Design/Build/Fly pri <b>Aeronavtičnem društvu Univerze v Mariboru</b>.
+                Omogoča <b>spremljanje v realnem času</b> in <b>nastavljanje parametrov med letom</b> za avtonomno letalo.
+            </span>
+        </p>
+        <p>
+            <span data-lang="eng">
+                Operating at <b>20 Hz</b>, the system transmits attitude, altitude, velocity, and PID data with low latency.
+                Each flight is automatically <b>logged</b> for analysis, and full aircraft configurations can be
+                <b>uploaded</b> before take-off.
+            </span>
+            <span data-lang="slo" style="display:none;">
+                Sistem deluje pri <b>20 Hz</b> in pošilja podatke o nagibu, višini, hitrosti in PID vrednostih z majhno zakasnitvijo.
+                Vsak let se samodejno <b>zabeleži</b> za analizo, celotne konfiguracije letala pa se lahko <b>naložijo</b> pred vzletom.
+            </span>
+        </p>
+        <p>
+            <span data-lang="eng">
+                Communication uses the <b>ESP-NOW protocol</b> on ESP32’s 2.4 GHz antenna, providing direct data transfer
+                without Wi-Fi or cellular networks.
+            </span>
+            <span data-lang="slo" style="display:none;">
+                Komunikacija uporablja <b>protokol ESP-NOW</b> na 2,4 GHz anteni ESP32, kar omogoča neposreden prenos podatkov
+                brez uporabe Wi-Fi ali mobilnih omrežij.
+            </span>
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>
+            <span data-lang="eng">Dashboard Interface</span>
+            <span data-lang="slo" style="display:none;">Uporabniški vmesnik</span>
+        </h2>
+        <p>
+            <span data-lang="eng">
+                A <b>Vue.js</b> dashboard displays telemetry through live charts, gauges, and GPS maps. It supports dual
+                data streams, in-flight PID tuning, and automatic recording with playback for post-flight evaluation.
+            </span>
+            <span data-lang="slo" style="display:none;">
+                Nadzorna plošča <b>Vue.js</b> prikazuje telemetrijo prek grafov, merilnikov in GPS zemljevidov.
+                Podpira dvojni prenos podatkov, nastavljanje PID parametrov med letom ter samodejno beleženje z možnostjo predvajanja po letu.
+            </span>
+        </p>
+        <img src="./images/Dashboard.png" alt="ADUM Ground Station dashboard" class="preview" />
+    </section>
+
+    <section class="section">
+        <h2>
+            <span data-lang="eng">Technology Stack</span>
+            <span data-lang="slo" style="display:none;">Tehnološki sklad</span>
+        </h2>
+        <ul>
+            <li><b><span data-lang="eng">MCU:</span><span data-lang="slo" style="display:none;">Mikrokrmilnik:</span></b> ESP32-WROOM-32E (krmilnik leta & sprejemnik)</li>
+            <li><b><span data-lang="eng">Communication:</span><span data-lang="slo" style="display:none;">Komunikacija:</span></b> ESP-NOW (2.4 GHz, 20 Hz), lastni UART protokol</li>
+            <li><b><span data-lang="eng">Backend:</span><span data-lang="slo" style="display:none;">Zaledje:</span></b> Python + Socket.IO</li>
+            <li><b><span data-lang="eng">Frontend:</span><span data-lang="slo" style="display:none;">Uporabniški vmesnik:</span></b> Vue.js</li>
+            <li><b><span data-lang="eng">Features:</span><span data-lang="slo" style="display:none;">Funkcionalnosti:</span></b> Telemetrija v živo, nastavitve parametrov, beleženje letov, nalaganje konfiguracij</li>
+        </ul>
+        <img src="./images/Diagram.png" alt="System diagram" class="preview" />
+    </section>
+
+    <section class="section">
+        <h2>
+            <span data-lang="eng">Testing & Team</span>
+            <span data-lang="slo" style="display:none;">Testiranja in ekipa</span>
+        </h2>
+        <p>
+            <span data-lang="eng">
+                The software and flight teams conducted <b>weekly outdoor tests of the autonomous aircraft</b>, using the
+                ground station as supporting software for live telemetry and configuration during flights.
+            </span>
+            <span data-lang="slo" style="display:none;">
+                Programska in letalska ekipa sta izvajali <b>tedenska testiranja avtonomnega letala na prostem</b>,
+                pri čemer je zemeljska postaja služila kot podporna programska oprema za telemetrijo v živo in konfiguracijo med letom.
+            </span>
+        </p>
+        <p>
+            <span data-lang="eng">
+                At the <b>2025 AIAA Design/Build/Fly competition</b>, the autonomous system placed <b>4th in Mission 3</b>
+                out of <b>110+ teams</b>, demonstrating the reliability of both communication and control subsystems.
+            </span>
+            <span data-lang="slo" style="display:none;">
+                Na tekmovanju <b>2025 AIAA Design/Build/Fly</b> je avtonomni sistem osvojil <b>4. mesto v misiji 3</b>
+                med <b>110+ ekipami</b>, kar je potrdilo zanesljivost komunikacijskega in krmilnega podsistema.
+            </span>
+        </p>
+
+        <iframe src="https://www.youtube.com/embed/4SbbvK1bl0k" allowfullscreen></iframe>
+
+        <div class="image-grid">
+            <img src="./images/ADUMGROUP.webp" alt="ADUM team photo 1" />
+            <img src="./images/ADUMGROUP2.webp" alt="ADUM team photo 2" />
+        </div>
+
+        <img src="./images/ADUMGROUP3.jpg" alt="Flight testing photo" class="preview" />
+    </section>
+
+    <section class="section">
+        <h2>
+            <span data-lang="eng">Simulation Visualization</span>
+            <span data-lang="slo" style="display:none;">Simulacijska vizualizacija</span>
+        </h2>
+        <p>
+            <span data-lang="eng">
+                A small <b>JSBSim + Three.js</b> simulator was created to visualize and test autonomous landing algorithms
+                before real flights. It replicates control behavior and flight dynamics for software-in-the-loop validation.
+            </span>
+            <span data-lang="slo" style="display:none;">
+                Razvit je bil manjši simulator <b>JSBSim + Three.js</b> za vizualizacijo in testiranje algoritmov za avtonomno pristajanje
+                pred dejanskimi leti. Simulira obnašanje krmilnih sistemov in dinamiko leta za preverjanje programske logike.
+            </span>
+        </p>
+        <iframe src="https://www.youtube.com/embed/9CLHvh1_RFs" allowfullscreen></iframe>
+    </section>
+
+    <section class="section">
+        <a href="../index.html" class="project-button">
+            <span data-lang="eng">← Back to CV</span>
+            <span data-lang="slo" style="display:none;">← Nazaj na CV</span>
+        </a>
+    </section>
+
+    <footer>
+        © 2025 Viktor Rackov | <a href="https://viktorrackov.com" target="_blank">viktorrackov.com</a>
+    </footer>
+
+    <script>
+        let currentLang = 'eng';
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                el.style.display = (el.getAttribute('data-lang') === lang) ? 'inline' : 'none';
+            });
+            document.getElementById('eng-btn').classList.toggle('active', lang === 'eng');
+            document.getElementById('slo-btn').classList.toggle('active', lang === 'slo');
+        }
+        window.onload = () => setLanguage(currentLang);
+    </script>
+</body>
+
+</html>

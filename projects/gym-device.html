@@ -117,6 +117,13 @@
             box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
             margin: 1rem 0;
         }
+                #language-selector { position: fixed; top: 10px; right: 10px; z-index: 1000; }
+        #language-selector button {
+            background-color: var(--primary-color); color: white; border: none; padding: 0.5rem 1rem; margin: 0 0.25rem;
+            border-radius: 4px; cursor: pointer; transition: background-color 0.2s ease;
+        }
+        #language-selector button.active { background-color: var(--accent-color); }
+
 
         @media (max-width: 768px) {
             body {
@@ -131,64 +138,111 @@
 </head>
 
 <body>
+    <!-- Language selector -->
+    <div id="language-selector" style="position:fixed;top:10px;right:10px;z-index:1000;">
+        <button onclick="setLanguage('eng')" id="eng-btn">ENG</button>
+        <button onclick="setLanguage('slo')" id="slo-btn">SLO</button>
+    </div>
+
     <header>
-        <h1>Gym Performance Evaluation Device</h1>
-        <p><strong>Embedded Fitness Device | 2025</strong></p>
+        <h1>
+            <span data-lang="eng">Gym Performance Evaluation Device</span>
+            <span data-lang="slo" style="display:none;">Naprava za oceno vadbene zmogljivosti</span>
+        </h1>
+        <p>
+            <strong>
+                <span data-lang="eng">Embedded Fitness Device | 2025</span>
+                <span data-lang="slo" style="display:none;">Vgrajena fitnes naprava | 2025</span>
+            </strong>
+        </p>
     </header>
 
     <section class="section">
-        <h2>Overview</h2>
+        <h2>
+            <span data-lang="eng">Overview</span>
+            <span data-lang="slo" style="display:none;">Pregled</span>
+        </h2>
         <p>
-            This project introduces a compact embedded device designed to measure and analyze user performance on gym
-            cable
-            machines. It combines <b>force sensing</b> and <b>motion tracking</b> to evaluate workout phases in real
-            time,
-            offering precise insights into exercise form and efficiency.
+            <span data-lang="eng">
+                Compact embedded device for measuring force and motion on gym cable machines.
+                Uses <b>strain-gauge load cell</b> and <b>6-axis IMU</b> to classify movement phases in real time.
+            </span>
+            <span data-lang="slo" style="display:none;">
+                Kompaktna vgrajena naprava za merjenje sile in gibanja na fitnes napravah s kabli.
+                Uporablja <b>merilno celico s tenzometrom</b> in <b>6-osni IMU senzor</b> za razvrščanje faz gibanja v realnem času.
+            </span>
         </p>
         <p>
-            The system connects wirelessly to a <b>React Native + TypeScript mobile app</b>, where live data
-            visualization,
-            workout logging, and automatic phase recognition help users and trainers monitor strength performance more
-            effectively.
+            <span data-lang="eng">
+                Streams data over BLE to a <b>React Native + TypeScript</b> mobile app for live visualization,
+                automatic phase detection, and training analysis.
+            </span>
+            <span data-lang="slo" style="display:none;">
+                Pošilja podatke prek BLE v mobilno aplikacijo <b>React Native + TypeScript</b> za vizualizacijo v živo,
+                samodejno prepoznavo faz in analizo vadbe.
+            </span>
         </p>
     </section>
 
     <section class="section">
-        <h2>Key Features</h2>
+        <h2>
+            <span data-lang="eng">Key Features</span>
+            <span data-lang="slo" style="display:none;">Ključne funkcije</span>
+        </h2>
         <ul>
-            <li>Wireless real-time data transmission to mobile app</li>
-            <li>Embedded algorithm for detecting movement phases</li>
-            <li>High-resolution force and motion tracking</li>
-            <li>Mobile dashboard for exercise visualization and analytics</li>
-            <li>Configurable profiles and local data logging</li>
+            <li><span data-lang="eng">Wireless real-time BLE data streaming</span><span data-lang="slo" style="display:none;">Brezžični BLE prenos podatkov v realnem času</span></li>
+            <li><span data-lang="eng">On-device phase classification using IMU and load cell</span><span data-lang="slo" style="display:none;">Razpoznavanje faz gibanja na napravi z uporabo IMU in merilne celice</span></li>
+            <li><span data-lang="eng">High-resolution 24-bit ADC force sensing</span><span data-lang="slo" style="display:none;">Merjenje sile z visoko ločljivostjo prek 24-bitnega ADC</span></li>
+            <li><span data-lang="eng">Mobile dashboard for live analytics and exercise review</span><span data-lang="slo" style="display:none;">Mobilna nadzorna plošča za analizo in pregled vadbe</span></li>
+            <li><span data-lang="eng">Configurable profiles and local data logging</span><span data-lang="slo" style="display:none;">Nastavljivi profili in lokalno shranjevanje podatkov</span></li>
         </ul>
     </section>
 
     <section class="section">
-        <h2>Technology Stack</h2>
+        <h2>
+            <span data-lang="eng">Technology Stack</span>
+            <span data-lang="slo" style="display:none;">Tehnološki sklad</span>
+        </h2>
         <ul>
-            <li><b>Microcontroller:</b> ESP32-WROOM-32E</li>
-            <li><b>Sensors:</b> Load cell amplifier, 6-axis IMU</li>
-            <li><b>Firmware:</b> C++ (ESP-IDF + FreeRTOS)</li>
-            <li><b>Mobile App:</b> React Native, TypeScript, WatermelonDB</li>
-            <li><b>Data Storage:</b> LittleFS (on-device), Local SQLite (mobile)</li>
-            <li><b>3D Design:</b> Onshape + Elegoo Saturn 4 Ultra resin printing</li>
+            <li><b><span data-lang="eng">Microcontroller:</span><span data-lang="slo" style="display:none;">Mikrokrmilnik:</span></b> ESP32-WROOM-32E (FreeRTOS, C++)</li>
+            <li><b><span data-lang="eng">Sensors:</span><span data-lang="slo" style="display:none;">Senzorji:</span></b> 24-bitni ADC, 6-osni IMU</li>
+            <li><b><span data-lang="eng">Mobile App:</span><span data-lang="slo" style="display:none;">Mobilna aplikacija:</span></b> React Native, TypeScript, SQLite</li>
+            <li><b><span data-lang="eng">3D Design:</span><span data-lang="slo" style="display:none;">3D načrtovanje:</span></b> Onshape</li>
+            <li><b><span data-lang="eng">Manufacturing:</span><span data-lang="slo" style="display:none;">Izdelava:</span></b> Elegoo Saturn 4 Ultra (smola) &amp; Creality Ender 3 (FDM)</li>
         </ul>
     </section>
 
     <section class="section">
-        <h2>Gallery</h2>
+        <h2>
+            <span data-lang="eng">Gallery</span>
+            <span data-lang="slo" style="display:none;">Galerija</span>
+        </h2>
 
-        <h3 style="color:#2B3A55; margin-top:1.2rem;">Housing V2 (Current Version)</h3>
+        <h3 style="color:#2B3A55; margin-top:1.2rem;">
+            <span data-lang="eng">Housing V2 (Current Version)</span>
+            <span data-lang="slo" style="display:none;">Ohišje V2 (Trenutna različica)</span>
+        </h3>
         <img src="./images/HousingV2.png" alt="Housing V2 prototype" class="preview" />
         <img src="./images/HousingV2TOP.png" alt="Housing V2 top view" class="preview" />
 
-        <h3 style="color:#2B3A55; margin-top:1.8rem;">Housing V1 (Initial Prototype)</h3>
-        <p>The first resin-printed prototype used for mechanical validation and early sensor testing.</p>
+        <h3 style="color:#2B3A55; margin-top:1.8rem;">
+            <span data-lang="eng">Housing V1 (Initial Prototype)</span>
+            <span data-lang="slo" style="display:none;">Ohišje V1 (Prvi prototip)</span>
+        </h3>
+        <p>
+            <span data-lang="eng">First resin prototype for mechanical validation and sensor calibration.</span>
+            <span data-lang="slo" style="display:none;">Prvi prototip iz smole, uporabljen za mehansko preverjanje in kalibracijo senzorjev.</span>
+        </p>
         <img src="./images/Housing.png" alt="Housing V1 prototype" class="preview" />
 
-        <h3 style="color:#2B3A55; margin-top:1.8rem;">PCB Design</h3>
-        <p>The custom 4-layer PCB</p>
+        <h3 style="color:#2B3A55; margin-top:1.8rem;">
+            <span data-lang="eng">PCB Design</span>
+            <span data-lang="slo" style="display:none;">Načrt tiskanega vezja (PCB)</span>
+        </h3>
+        <p>
+            <span data-lang="eng">Custom 4-layer PCB for sensor interface and BLE communication.</span>
+            <span data-lang="slo" style="display:none;">Lastno 4-slojno tiskano vezje za senzorje in BLE komunikacijo.</span>
+        </p>
         <div style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center;">
             <img src="./images/PCBFront.png" alt="PCB front view"
                 style="width:48%; border-radius:8px; box-shadow:0 2px 12px rgba(0,0,0,0.1);" />
@@ -196,16 +250,29 @@
                 style="width:48%; border-radius:8px; box-shadow:0 2px 12px rgba(0,0,0,0.1);" />
         </div>
     </section>
-
-    <section class="section">
-
-        <a href="../index.html" class="project-button">← Back to CV</a>
-
+        <section class="section">
+        <a href="../index.html" class="project-button">
+            <span data-lang="eng">← Back to CV</span>
+            <span data-lang="slo" style="display:none;">← Nazaj na CV</span>
+        </a>
     </section>
 
     <footer>
         © 2025 Viktor Rackov | <a href="https://viktorrackov.com" target="_blank">viktorrackov.com</a>
     </footer>
+
+    <script>
+        let currentLang = 'eng';
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                el.style.display = (el.getAttribute('data-lang') === lang) ? 'inline' : 'none';
+            });
+            document.getElementById('eng-btn').classList.toggle('active', lang === 'eng');
+            document.getElementById('slo-btn').classList.toggle('active', lang === 'slo');
+        }
+        window.onload = () => setLanguage(currentLang);
+    </script>
 </body>
 
 </html>
