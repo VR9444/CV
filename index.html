@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="./VR.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Viktor Rackov - Curriculum Vitae</title>
+    <title>Temporarily unavailable</title>
     <style>
         :root {
             --primary-color: #2B3A55;
@@ -13,6 +13,7 @@
             --background-color: #F8F9FA;
             --text-color: #2B2D42;
         }
+
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             line-height: 1.6;
@@ -22,58 +23,259 @@
             background-color: var(--background-color);
             color: var(--text-color);
         }
+
         header {
             text-align: center;
             margin-bottom: 2.5rem;
             padding: 2rem 0;
             border-bottom: 3px solid var(--primary-color);
         }
-        h1 { color: var(--primary-color); font-size: 2.5rem; margin: 0.5rem 0; font-weight: 600; letter-spacing: -0.5px; }
-        h2 {
-            color: var(--accent-color); margin: 2rem 0 1.5rem; font-size: 1.5rem; font-weight: 500; position: relative; padding-left: 1.2rem;
-        }
-        h2::before { content: "▹"; position: absolute; left: 0; color: var(--primary-color); }
-        .section {
-            background: white; border-radius: 8px; padding: 1.5rem 2rem; margin-bottom: 2rem;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.08); transition: transform 0.2s ease;
-        }
-        .section:hover { transform: translateY(-2px); }
-        .item { margin-bottom: 1.8rem; position: relative; padding-left: 1.2rem; }
-        .item::before { content: "•"; color: var(--accent-color); position: absolute; left: 0; font-weight: bold; }
-        .date { float: right; color: #6C757D; font-size: 0.9em; font-weight: 500; }
-        a { color: var(--primary-color); text-decoration: none; transition: color 0.2s ease; }
-        a:hover { color: var(--accent-color); }
-        ul { list-style: none; padding-left: 0; }
-        li { padding: 0.3rem 0; }
-        .contact-links { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; margin-top: 1.5rem; }
-        .contact-group { display: flex; gap: 1rem; align-items: center; }
-        .contact-group a { display: flex; align-items: center; gap: 0.5rem; }
-        .contact-links a::before { content: "> "; color: var(--accent-color); font-family: monospace; font-weight: bold; }
 
-        #language-selector { position: fixed; top: 10px; right: 10px; z-index: 1000; }
-        #language-selector button {
-            background-color: var(--primary-color); color: white; border: none; padding: 0.5rem 1rem; margin: 0 0.25rem;
-            border-radius: 4px; cursor: pointer; transition: background-color 0.2s ease;
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin: 0.5rem 0;
+            font-weight: 600;
+            letter-spacing: -0.5px;
         }
-        #language-selector button.active { background-color: var(--accent-color); }
+
+        h2 {
+            color: var(--accent-color);
+            margin: 2rem 0 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 500;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        h2::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-2px);
+        }
+
+        .item {
+            margin-bottom: 1.8rem;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        .item::before {
+            content: "•";
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .date {
+            float: right;
+            color: #6C757D;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            padding: 0.3rem 0;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .contact-group {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .contact-group a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-links a::before {
+            content: "> ";
+            color: var(--accent-color);
+            font-family: monospace;
+            font-weight: bold;
+        }
+
+        #language-selector {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+        }
+
+        #language-selector button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.25rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        #language-selector button.active {
+            background-color: var(--accent-color);
+        }
 
         @media (max-width: 768px) {
-            body { padding: 1rem; }
-            .date { float: none; display: block; margin-top: 0.3rem; }
-            h1 { font-size: 2rem; }
-            .section { padding: 1rem; }
-            .contact-group { flex-direction: column; gap: 0.5rem; }
-            .item { display: block !important; }
+            body {
+                padding: 1rem;
+            }
+
+            .date {
+                float: none;
+                display: block;
+                margin-top: 0.3rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 1rem;
+            }
+
+            .contact-group {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .item {
+                display: block !important;
+            }
         }
 
-        .project-button { background-color: var(--primary-color); color: white; padding: 0.75rem 1.5rem; border-radius: 6px; font-weight: 500; text-decoration: none; display: inline-block; transition: background-color 0.2s ease, transform 0.2s ease; }
-        .project-button:hover { background-color: var(--accent-color); transform: translateY(-2px); }
-        .project-button.small { padding: 0.5rem 1rem; font-size: 0.9rem; }
-        footer { text-align: center; margin-top: 2rem; border-top: 2px solid #ddd; padding-top: 1rem; font-size: 0.9rem; color: #555; }
+        .project-button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .project-button:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .project-button.small {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            border-top: 2px solid #ddd;
+            padding-top: 1rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        body.is-unavailable {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            max-width: none;
+            margin: 0;
+            padding: 28px;
+            color: #f7fbf8;
+            background:
+                radial-gradient(circle at 20% 18%, rgba(121, 216, 199, 0.18), transparent 28%),
+                linear-gradient(135deg, #081f24 0%, #102f36 58%, #231f16 100%);
+        }
+
+        body.is-unavailable > :not(.temporary-unavailable) {
+            display: none !important;
+        }
+
+        .temporary-unavailable {
+            width: min(100%, 560px);
+            padding: 32px;
+            border: 1px solid rgba(247, 251, 248, 0.18);
+            border-radius: 8px;
+            background: rgba(8, 31, 36, 0.78);
+            box-shadow: 0 28px 80px rgba(0, 0, 0, 0.38);
+        }
+
+        .temporary-unavailable p.temporary-unavailable__eyebrow {
+            margin: 0 0 14px;
+            color: #79d8c7;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .temporary-unavailable h1 {
+            margin: 0 0 14px;
+            color: #ffffff;
+            font-size: clamp(2.2rem, 9vw, 4.3rem);
+            line-height: 0.96;
+            font-weight: 800;
+            letter-spacing: 0;
+        }
+
+        .temporary-unavailable p {
+            margin: 0;
+            color: rgba(247, 251, 248, 0.78);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
     </style>
 </head>
 
-<body>
+<body class="is-unavailable">
+    <main class="temporary-unavailable" aria-labelledby="unavailable-title">
+        <p class="temporary-unavailable__eyebrow">Viktor Rackov</p>
+        <h1 id="unavailable-title">Temporarily unavailable</h1>
+        <p>This page is currently unavailable. Please check back later.</p>
+    </main>
     <div id="language-selector">
         <button onclick="setLanguage('eng')" id="eng-btn">ENG</button>
         <button onclick="setLanguage('slo')" id="slo-btn">SLO</button>
@@ -83,7 +285,8 @@
         <h1>Viktor Rackov</h1>
         <p style="font-size:1.05rem;color:#444;max-width:620px;margin:0.5rem auto 0;">
             <span data-lang="eng">Engineer and MSc Computer Science student at the University of Maribor (FERI).</span>
-            <span data-lang="slo" style="display:none;">Inženir in magistrski študent računalništva na Univerzi v Mariboru (FERI).</span>
+            <span data-lang="slo" style="display:none;">Inženir in magistrski študent računalništva na Univerzi v
+                Mariboru (FERI).</span>
         </p>
         <div class="contact-links">
             <div class="contact-group">
@@ -107,7 +310,8 @@
             <span class="date">2024 – Present</span>
             <p>
                 <span data-lang="eng">MSc in Computer Science and Information Technologies</span>
-                <span data-lang="slo" style="display:none;">Magistrski študij računalništva in informacijskih tehnologij</span>
+                <span data-lang="slo" style="display:none;">Magistrski študij računalništva in informacijskih
+                    tehnologij</span>
             </p>
         </div>
 
@@ -118,10 +322,15 @@
             </h3>
             <span class="date">2020 – 2024</span>
             <p>
-                <span data-lang="eng">BSc in Computer Science – <u>Valedictorian, Student of Generation</u></span>
-                <span data-lang="slo" style="display:none;">Diplomirani inženir računalništva – <u>Najboljši študent, študent generacije</u></span>
+                <span data-lang="eng">
+                  BASc in Informatics – <u>Valedictorian, Student of Generation</u>
+                </span>
+                <span data-lang="slo" style="display:none;">
+                    Diplomirani inženir informatike – <u>Najboljši študent, študent generacije</u>
+                </span>
             </p>
         </div>
+
 
         <div class="item" style="display:flex;justify-content:space-between;align-items:center;">
             <h3>
@@ -140,20 +349,25 @@
 
         <div class="item">
 
-                <h3 data-lang="eng">Aeronautical Society of the University of Maribor (ADUM)</h3>
-                <h3 data-lang="slo" style="display:none;">Aeronavtično društvo Univerze v Mariboru (ADUM)</h3>
+            <h3 data-lang="eng">Aeronautical Society of the University of Maribor (ADUM)</h3>
+            <h3 data-lang="slo" style="display:none;">Aeronavtično društvo Univerze v Mariboru (ADUM)</h3>
 
             <div class="role-block">
                 <div style="display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;">
                     <strong>
                         <span data-lang="eng">Software Team Lead &amp; Systems Co-Lead (PCBs)</span>
-                        <span data-lang="slo" style="display:none;">Vodja programske ekipe in so-vodja sistemov (tiskana vezja)</span>
+                        <span data-lang="slo" style="display:none;">Vodja programske ekipe in so-vodja sistemov (tiskana
+                            vezja)</span>
                     </strong>
                     <span class="date">Sep 2025 – Present</span>
                 </div>
                 <p>
-                    <span data-lang="eng">Leading flight-control firmware, telemetry, and ground-station development. Co-leading PCB and hardware design. Coordinating a 6-member team across software and electronics.</span>
-                    <span data-lang="slo" style="display:none;">Vodenje razvoja firmware-a krmilnika leta, telemetrije in zemeljske postaje. So-vodenje načrtovanja tiskanih vezij in strojne opreme. Koordinacija 6-članske ekipe med programsko in elektronsko domeno.</span>
+                    <span data-lang="eng">Leading flight-control firmware, telemetry, and ground-station development.
+                        Co-leading PCB and hardware design. Coordinating a 6-member team across software and
+                        electronics.</span>
+                    <span data-lang="slo" style="display:none;">Vodenje razvoja firmware-a krmilnika leta, telemetrije
+                        in zemeljske postaje. So-vodenje načrtovanja tiskanih vezij in strojne opreme. Koordinacija
+                        6-članske ekipe med programsko in elektronsko domeno.</span>
                 </p>
             </div>
 
@@ -166,32 +380,40 @@
                     <span class="date">Oct 2024 – Aug 2025</span>
                 </div>
                 <p>
-                    <span data-lang="eng">Developed telemetry, communication, and flight-data systems for AIAA DBF. Integrated real-time WebSocket and ESP-NOW links between aircraft and ground control. Weekly autonomous flight tests; team placed <b>4th in Mission 3 / 110+ teams (AIAA DBF 2025)</b>.</span>
-                    <span data-lang="slo" style="display:none;">Razvoj telemetrije, komunikacije in sistemov za podatke o letu za AIAA DBF. Integracija realnočasovnih povezav WebSocket in ESP-NOW med letalom in zemeljsko postajo. Tedenska testiranja avtonomnega letala; ekipa <b>4. mesto v misiji 3 / 110+ ekip (AIAA DBF 2025)</b>.</span>
+                    <span data-lang="eng">Developed telemetry, communication, and flight-data systems for AIAA DBF.
+                        Integrated real-time WebSocket and ESP-NOW links between aircraft and ground control. Weekly
+                        autonomous flight tests; team placed <b>4th in Mission 3 / 110+ teams (AIAA DBF
+                            2025)</b>.</span>
+                    <span data-lang="slo" style="display:none;">Razvoj telemetrije, komunikacije in sistemov za podatke
+                        o letu za AIAA DBF. Integracija realnočasovnih povezav WebSocket in ESP-NOW med letalom in
+                        zemeljsko postajo. Tedenska testiranja avtonomnega letala; ekipa <b>4. mesto v misiji 3 / 110+
+                            ekip (AIAA DBF 2025)</b>.</span>
                 </p>
             </div>
         </div>
 
         <div class="item">
 
-                <h3 data-lang="eng">J1 Cultural Exchange Program</h3>
-                <h3 data-lang="slo" style="display:none;">Kulturni izmenjevalni program J1</h3>
- 
+            <h3 data-lang="eng">J1 Cultural Exchange Program</h3>
+            <h3 data-lang="slo" style="display:none;">Kulturni izmenjevalni program J1</h3>
+
             <span class="date" data-lang="eng">Summers 2022 &amp; 2023</span>
-            <span class="date"  data-lang="slo">Poletja 2022 &amp; 2023</span>
+            <span class="date" data-lang="slo">Poletja 2022 &amp; 2023</span>
             <p>
-                <span data-lang="eng">Over two summers, totaling nine months, I worked as the main raw bar cook on Martha's Vineyard,
+                <span data-lang="eng">Over two summers, totaling nine months, I worked as the main raw bar cook on
+                    Martha's Vineyard,
                     Massachusetts. I managed a team of workers at my station.</span>
-                <span data-lang="slo" style="display:none;"> Dve poletji, skupaj devet mesecev, sem delal kot glavni kuhar surovega bara na Martha's Vineyard,
+                <span data-lang="slo" style="display:none;"> Dve poletji, skupaj devet mesecev, sem delal kot glavni
+                    kuhar surovega bara na Martha's Vineyard,
                     Massachusetts. Vodil sem ekipo delavcev na svoji postaji.</span>
             </p>
         </div>
 
         <div class="item">
-           
-                <h3 data-lang="eng">Web Developer Intern – Inspira</h3>
-                <h3 data-lang="slo" style="display:none;">Pripravnik za spletni razvoj – Inspira</h3>
-         
+
+            <h3 data-lang="eng">Web Developer Intern – Inspira</h3>
+            <h3 data-lang="slo" style="display:none;">Pripravnik za spletni razvoj – Inspira</h3>
+
             <span class="date">Dec 2021 – Dec 2022</span>
             <p>
                 <span data-lang="eng">Worked with React for front-end development and built backend functionalities
@@ -211,8 +433,10 @@
         <div class="item">
             <strong>Gym Performance Evaluation Device</strong> <span class="date">2025</span>
             <p>
-                <span data-lang="eng">ESP32 device measuring force and motion on cable machines; real-time phase classification; BLE streaming to React Native + TypeScript app.</span>
-                <span data-lang="slo" style="display:none;">Naprava na ESP32 za merjenje sile in gibanja na napravah s kabli; razpoznavanje faz v realnem času; BLE prenos v aplikacijo (React Native + TypeScript).</span>
+                <span data-lang="eng">ESP32 device measuring force and motion on cable machines; real-time phase
+                    classification; BLE streaming to React Native + TypeScript app.</span>
+                <span data-lang="slo" style="display:none;">Naprava na ESP32 za merjenje sile in gibanja na napravah s
+                    kabli; razpoznavanje faz v realnem času; BLE prenos v aplikacijo (React Native + TypeScript).</span>
             </p>
             <div style="text-align:center;margin-top:0.8rem;">
                 <a href="./projects/gym-device.html" class="project-button small">
@@ -225,8 +449,11 @@
         <div class="item">
             <strong>ADUM Ground Station</strong> <span class="date">2025</span>
             <p>
-                <span data-lang="eng">Real-time telemetry dashboard (WebSocket backend, React front-end) with GPS tracking, data streams, and system logs for autonomous flight tests.</span>
-                <span data-lang="slo" style="display:none;">Telemetrijska nadzorna plošča v realnem času (WebSocket backend, React frontend) z GPS sledenjem, podatkovnimi tokovi in sistemskimi dnevniki za preizkuse avtonomnega letenja.</span>
+                <span data-lang="eng">Real-time telemetry dashboard (WebSocket backend, React front-end) with GPS
+                    tracking, data streams, and system logs for autonomous flight tests.</span>
+                <span data-lang="slo" style="display:none;">Telemetrijska nadzorna plošča v realnem času (WebSocket
+                    backend, React frontend) z GPS sledenjem, podatkovnimi tokovi in sistemskimi dnevniki za preizkuse
+                    avtonomnega letenja.</span>
             </p>
             <div style="text-align:center;margin-top:0.8rem;">
                 <a href="./projects/adum-ground-station.html" class="project-button small">
@@ -250,7 +477,8 @@
             <span class="date">2020 – 2024</span>
             <p>
                 <span data-lang="eng">Volunteer for events and orientation programs for high school students</span>
-                <span data-lang="slo" style="display:none;">Prostovoljec za dogodke in orientacijske programe za dijake</span>
+                <span data-lang="slo" style="display:none;">Prostovoljec za dogodke in orientacijske programe za
+                    dijake</span>
             </p>
         </div>
         <div class="item" style="display:flex;justify-content:space-between;align-items:center;">
@@ -270,11 +498,13 @@
         <ul>
             <li>
                 <span data-lang="eng">Valedictorian – Student of the Generation (Subotica Tech 2023)</span>
-                <span data-lang="slo" style="display:none;">Najboljši študent – Študent generacije (Subotica Tech 2023)</span>
+                <span data-lang="slo" style="display:none;">Najboljši študent – Študent generacije (Subotica Tech
+                    2023)</span>
             </li>
             <li>
                 <span data-lang="eng">Best Student Award – Applied Colleges (VISER 2023)</span>
-                <span data-lang="slo" style="display:none;">Nagrada za najboljšega študenta – Višje strokovne šole (VISER 2023)</span>
+                <span data-lang="slo" style="display:none;">Nagrada za najboljšega študenta – Višje strokovne šole
+                    (VISER 2023)</span>
             </li>
             <li>
                 <span data-lang="eng">State &amp; City Scholarships (2021–2023)</span>
@@ -312,4 +542,5 @@
         window.onload = function () { setLanguage(currentLang); };
     </script>
 </body>
+
 </html>

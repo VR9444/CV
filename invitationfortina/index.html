@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="sl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#102f36" />
+    <meta property="og:title" content="Povabilo na pivo" />
+    <meta property="og:description" content="Uradni link za prijavo." />
+    <meta property="og:url" content="https://viktorrackov.com/invitationfortina/" />
+    <meta property="og:image" content="https://viktorrackov.com/invitationfortina/assets/beer-invite.png" />
+    <meta name="invite-code" content="TINA-PIVO-7J4Q9M" />
+    <link rel="icon" type="image/png" href="../VR.png" />
+    <title>Povabilo na pivo</title>
+    <style>
+        :root {
+            --ink: #f7fbf8;
+            --muted: rgba(247, 251, 248, 0.78);
+            --line: rgba(247, 251, 248, 0.22);
+            --panel: rgba(8, 31, 36, 0.78);
+            --panel-strong: rgba(8, 31, 36, 0.92);
+            --accent: #f4c95d;
+            --accent-dark: #7a4f0c;
+            --mint: #79d8c7;
+            --shadow: rgba(0, 0, 0, 0.34);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            min-height: 100%;
+        }
+
+        body {
+            min-height: 100svh;
+            margin: 0;
+            color: var(--ink);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background:
+                linear-gradient(90deg, rgba(5, 26, 31, 0.95) 0%, rgba(8, 34, 39, 0.8) 42%, rgba(8, 24, 28, 0.3) 100%),
+                linear-gradient(180deg, rgba(5, 17, 20, 0.28) 0%, rgba(5, 17, 20, 0.72) 100%),
+                url("./assets/beer-invite.png") center / cover no-repeat;
+        }
+
+        main {
+            width: min(1120px, calc(100% - 40px));
+            min-height: 100svh;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: clamp(28px, 4vw, 56px);
+            padding: clamp(34px, 7vh, 80px) 0;
+        }
+
+        .invite {
+            flex: 0 0 auto;
+            width: clamp(420px, 52vw, 620px);
+        }
+
+        .eyebrow {
+            width: fit-content;
+            margin: 0 0 18px;
+            padding: 8px 12px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            color: var(--mint);
+            font-size: 0.78rem;
+            font-weight: 750;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            background: rgba(8, 31, 36, 0.45);
+            box-shadow: 0 16px 34px var(--shadow);
+        }
+
+        h1 {
+            max-width: 640px;
+            margin: 0;
+            color: var(--ink);
+            font-size: clamp(3rem, 9vw, 6.8rem);
+            line-height: 0.92;
+            font-weight: 850;
+            letter-spacing: 0;
+            text-wrap: balance;
+            text-shadow: 0 18px 44px rgba(0, 0, 0, 0.48);
+        }
+
+        .message {
+            max-width: 590px;
+            margin-top: clamp(24px, 4vw, 38px);
+            color: var(--muted);
+            font-size: clamp(1.05rem, 2vw, 1.24rem);
+            line-height: 1.65;
+            text-shadow: 0 8px 22px rgba(0, 0, 0, 0.52);
+        }
+
+        .message p {
+            margin: 0 0 16px;
+        }
+
+        .signature {
+            color: var(--ink);
+            font-weight: 750;
+        }
+
+        .panel {
+            flex: 0 0 auto;
+            width: 390px;
+            align-self: center;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 22px;
+            background: var(--panel);
+            box-shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+            backdrop-filter: blur(18px);
+        }
+
+        .panel h2 {
+            margin: 0 0 6px;
+            font-size: 1.1rem;
+            letter-spacing: 0;
+        }
+
+        .panel p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .details {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 22px 0;
+        }
+
+        .detail {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 12px 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .detail:last-child {
+            border-bottom: 1px solid var(--line);
+        }
+
+        .label {
+            color: rgba(247, 251, 248, 0.62);
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .value {
+            color: var(--ink);
+            font-weight: 760;
+            text-align: right;
+        }
+
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .form {
+            margin-top: 22px;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            margin-bottom: 14px;
+        }
+
+        .form-label {
+            color: rgba(247, 251, 248, 0.68);
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            padding: 12px 13px;
+            color: var(--ink);
+            font: inherit;
+            font-size: 0.96rem;
+            letter-spacing: 0;
+            background: rgba(255, 255, 255, 0.09);
+            outline: none;
+            transition: border-color 160ms ease, background 160ms ease, box-shadow 160ms ease;
+        }
+
+        textarea {
+            min-height: 82px;
+            resize: vertical;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: rgba(247, 251, 248, 0.46);
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: rgba(121, 216, 199, 0.78);
+            background: rgba(255, 255, 255, 0.13);
+            box-shadow: 0 0 0 3px rgba(121, 216, 199, 0.16);
+        }
+
+        .honeypot {
+            position: absolute;
+            left: -10000px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+
+        .free-times {
+            margin: 22px 0;
+            padding: 0;
+        }
+
+        .free-times-title {
+            display: block;
+            margin-bottom: 8px;
+            color: rgba(247, 251, 248, 0.62);
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .free-times-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .free-times-list li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 10px 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .free-times-list li:last-child {
+            border-bottom: 1px solid var(--line);
+        }
+
+        .time-day {
+            color: var(--ink);
+            font-weight: 780;
+        }
+
+        .time-slot {
+            color: var(--muted);
+            font-weight: 680;
+            text-align: right;
+        }
+
+        button,
+        a.button {
+            width: 100%;
+            min-height: 48px;
+            border: 0;
+            border-radius: 7px;
+            padding: 13px 16px;
+            color: #102f36;
+            font: inherit;
+            font-weight: 820;
+            letter-spacing: 0;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            background: var(--accent);
+            box-shadow: 0 12px 28px rgba(244, 201, 93, 0.25);
+            transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+        }
+
+        button:hover,
+        a.button:hover {
+            transform: translateY(-1px);
+            background: #ffd978;
+            box-shadow: 0 18px 34px rgba(244, 201, 93, 0.33);
+        }
+
+        button:disabled {
+            cursor: wait;
+            opacity: 0.72;
+            transform: none;
+            box-shadow: none;
+        }
+
+        button:focus-visible,
+        a.button:focus-visible {
+            outline: 3px solid var(--mint);
+            outline-offset: 3px;
+        }
+
+        .button.secondary {
+            color: var(--ink);
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: none;
+        }
+
+        .button.secondary:hover {
+            background: rgba(255, 255, 255, 0.14);
+        }
+
+        .status {
+            min-height: 48px;
+            margin-top: 16px;
+            padding: 13px 14px;
+            border-radius: 7px;
+            color: var(--ink);
+            background: rgba(121, 216, 199, 0.13);
+            border: 1px solid rgba(121, 216, 199, 0.35);
+            font-weight: 680;
+        }
+
+        .status[hidden] {
+            display: none;
+        }
+
+        .status-error {
+            background: rgba(255, 129, 119, 0.14);
+            border-color: rgba(255, 129, 119, 0.38);
+        }
+
+        @media (max-width: 980px) {
+            body {
+                background-position: 64% center;
+            }
+
+            main {
+                flex-direction: column;
+                align-items: stretch;
+                justify-content: center;
+                width: min(100% - 28px, 640px);
+                gap: 28px;
+                padding: 30px 0;
+            }
+
+            .invite {
+                width: 100%;
+            }
+
+            .eyebrow {
+                margin-bottom: 14px;
+            }
+
+            h1 {
+                font-size: clamp(3.2rem, 16vw, 5rem);
+            }
+
+            .message {
+                margin-top: 22px;
+                font-size: 1.04rem;
+            }
+
+            .panel {
+                width: 100%;
+                align-self: stretch;
+                padding: 18px;
+                background: var(--panel-strong);
+            }
+
+            .form-field {
+                margin-bottom: 12px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <section class="invite" aria-labelledby="title">
+            <h1 id="title">Povabilo na pivo</h1>
+
+            <!-- <div class="message">
+                <p>Živjo Tina,</p>
+                <p>ker je navadno sporočilo očitno preveč enostavno, sem naredil uradni link za prijavo.</p>
+                <p>Na kratko: bi šla naslednji teden na pivo?</p>
+                <p class="signature">Lp,<br />Viktor</p>
+            </div> -->
+            <div></div>
+        </section>
+
+
+        <aside class="panel" aria-label="Prijava">
+            <h2>Prijava</h2>
+            <p>Status: odprto</p>
+
+            <div class="details" aria-label="Podrobnosti">
+                <div class="detail">
+                    <span class="label">Kandidatka</span>
+                    <span class="value">Tina</span>
+                </div>
+                <div class="detail">
+                    <span class="label">Termin</span>
+                    <span class="value">naslednji teden</span>
+                </div>
+                <div class="detail">
+                    <span class="label">Program</span>
+                    <span class="value">pivo</span>
+                </div>
+            </div>
+
+            <div class="free-times" aria-label="Prosti termini">
+                <span class="free-times-title">Prosti termini</span>
+                <ul class="free-times-list">
+                    <li>
+                        <span class="time-day">Torek</span>
+                        <span class="time-slot">po 7</span>
+                    </li>
+                    <li>
+                        <span class="time-day">Četrtek</span>
+                        <span class="time-slot">po 7</span>
+                    </li>
+                    <li>
+                        <span class="time-day">Petek</span>
+                        <span class="time-slot">cel dan</span>
+                    </li>
+                    <li>
+                        <span class="time-day">Vikend</span>
+                        <span class="time-slot">frei</span>
+                    </li>
+                    <li>
+                        <span class="time-day">Ponedeljek</span>
+                        <span class="time-slot">na vprašaj</span>
+                    </li>
+                </ul>
+            </div>
+
+            <form class="form" action="https://formspree.io/f/mnjkeawv" method="POST" accept-charset="UTF-8">
+                <input type="hidden" name="_subject" value="Tina - prijava za pivo" />
+                <input type="hidden" name="stran" value="https://viktorrackov.com/invitationfortina/" />
+                <input type="hidden" name="kandidatka" value="Tina" />
+                <input id="invite-code" type="hidden" name="invite_code" value="" />
+                <input type="hidden" name="invite_code_source" value="head meta tag" />
+                <input type="hidden" name="prosti_termini" value="Torek po 7; Četrtek po 7; Petek cel dan; Vikend frei; Ponedeljek vprašaj, če sem prost" />
+
+                <div class="honeypot" aria-hidden="true">
+                    <label for="website">Website</label>
+                    <input id="website" type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+                </div>
+
+                <label class="form-field" for="termin">
+                    <span class="form-label">Termin</span>
+                    <input id="termin" type="text" name="termin" placeholder="npr. sreda po 19h" autocomplete="off" />
+                </label>
+
+                <label class="form-field" for="sporocilo">
+                    <span class="form-label">Sporočilo</span>
+                    <textarea id="sporocilo" name="sporocilo" placeholder="Če želiš kaj dodati"></textarea>
+                </label>
+
+                <div style="margin-bottom: 12px" class="actions">
+                    <button type="submit" name="odgovor" value="Ja, prijavljam se">Ja, prijavljam se</button>
+                </div>
+                <p class="status" id="form-status" role="status" aria-live="polite" hidden></p>
+            </form>
+      </aside>
+    </main>
+
+    <script>
+        const inviteCode = document.querySelector('meta[name="invite-code"]')?.content || "";
+        const inviteCodeField = document.getElementById("invite-code");
+        const form = document.querySelector(".form");
+        const formStatus = document.getElementById("form-status");
+        const submitButton = form.querySelector('button[type="submit"]');
+        const defaultButtonText = submitButton.textContent;
+
+        inviteCodeField.value = inviteCode;
+
+        const showStatus = (message, type = "success") => {
+            formStatus.textContent = message;
+            formStatus.className = type === "error" ? "status status-error" : "status";
+            formStatus.hidden = false;
+        };
+
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            inviteCodeField.value = inviteCode;
+            submitButton.disabled = true;
+            submitButton.textContent = "Pošiljam...";
+            showStatus("Pošiljam prijavo...");
+
+            const formData = new FormData(form);
+            if (event.submitter?.name) {
+                formData.append(event.submitter.name, event.submitter.value);
+            }
+
+            try {
+                const response = await fetch(form.action, {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        Accept: "application/json"
+                    }
+                });
+
+                if (response.ok) {
+                    showStatus("Prijava sprejeta. Pivo gre v obdelavo.");
+                    submitButton.textContent = "Poslano";
+                    return;
+                }
+
+                const data = await response.json().catch(() => ({}));
+                const errorMessage = data.errors?.map((error) => error.message).join(" ")
+                    || "Nekaj ni šlo skozi. Probaj še enkrat ali mi napiši direktno.";
+
+                showStatus(errorMessage, "error");
+                submitButton.disabled = false;
+                submitButton.textContent = defaultButtonText;
+            } catch {
+                showStatus("Povezava je zaštekala. Probaj še enkrat.", "error");
+                submitButton.disabled = false;
+                submitButton.textContent = defaultButtonText;
+            }
+        });
+    </script>
+</body>
+
+</html>
