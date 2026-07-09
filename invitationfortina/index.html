@@ -42,7 +42,10 @@
             background:
                 linear-gradient(90deg, rgba(5, 26, 31, 0.95) 0%, rgba(8, 34, 39, 0.8) 42%, rgba(8, 24, 28, 0.3) 100%),
                 linear-gradient(180deg, rgba(5, 17, 20, 0.28) 0%, rgba(5, 17, 20, 0.72) 100%),
-                url("./assets/beer-invite.png") center / cover no-repeat;
+                image-set(
+                    url("./assets/beer-invite-bg.webp") type("image/webp"),
+                    url("./assets/beer-invite.png") type("image/png")
+                ) center / cover no-repeat;
         }
 
         main {
