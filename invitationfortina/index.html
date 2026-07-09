@@ -574,8 +574,8 @@
 
                 if (response.ok) {
                     const successMessage = selectedAnswer.startsWith("NO")
-                        ? "NO zabeležen. Pivo gre v mirovanje."
-                        : "Prijava sprejeta. Pivo gre v obdelavo.";
+                        ? "NO zabeležen."
+                        : "Prijava sprejeta.";
 
                     showStatus(successMessage);
                     clickedButton.textContent = "Poslano";
