@@ -330,6 +330,37 @@
             background: rgba(255, 255, 255, 0.14);
         }
 
+        button.meme-button {
+            min-height: 116px;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .meme-button img {
+            width: min(112px, 54%);
+            height: auto;
+            max-height: 104px;
+            object-fit: contain;
+            display: block;
+            pointer-events: none;
+            border-radius: 6px;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
         .status {
             min-height: 48px;
             margin-top: 16px;
@@ -489,6 +520,10 @@
 
                 <div style="margin-bottom: 12px" class="actions">
                     <button type="submit" name="odgovor" value="Ja, prijavljam se">Ja, prijavljam se</button>
+                    <button class="button secondary meme-button" type="submit" name="odgovor" value="NO - pivo se prestavi">
+                        <img src="./assets/no-pernalonga%20(1).gif" alt="" width="640" height="640" />
+                        <span class="sr-only">NO - pivo se prestavi</span>
+                    </button>
                 </div>
                 <p class="status" id="form-status" role="status" aria-live="polite" hidden></p>
             </form>
@@ -500,8 +535,8 @@
         const inviteCodeField = document.getElementById("invite-code");
         const form = document.querySelector(".form");
         const formStatus = document.getElementById("form-status");
-        const submitButton = form.querySelector('button[type="submit"]');
-        const defaultButtonText = submitButton.textContent;
+        const submitButtons = [...form.querySelectorAll('button[type="submit"]')];
+        const defaultButtonContent = new Map(submitButtons.map((button) => [button, button.innerHTML]));
 
         inviteCodeField.value = inviteCode;
 
@@ -515,8 +550,12 @@
             event.preventDefault();
 
             inviteCodeField.value = inviteCode;
-            submitButton.disabled = true;
-            submitButton.textContent = "Pošiljam...";
+            const clickedButton = event.submitter || submitButtons[0];
+            const selectedAnswer = clickedButton.value || "";
+            submitButtons.forEach((button) => {
+                button.disabled = true;
+            });
+            clickedButton.textContent = "Pošiljam...";
             showStatus("Pošiljam prijavo...");
 
             const formData = new FormData(form);
@@ -534,8 +573,12 @@
                 });
 
                 if (response.ok) {
-                    showStatus("Prijava sprejeta. Pivo gre v obdelavo.");
-                    submitButton.textContent = "Poslano";
+                    const successMessage = selectedAnswer.startsWith("NO")
+                        ? "NO zabeležen. Pivo gre v mirovanje."
+                        : "Prijava sprejeta. Pivo gre v obdelavo.";
+
+                    showStatus(successMessage);
+                    clickedButton.textContent = "Poslano";
                     return;
                 }
 
@@ -544,12 +587,16 @@
                     || "Nekaj ni šlo skozi. Probaj še enkrat ali mi napiši direktno.";
 
                 showStatus(errorMessage, "error");
-                submitButton.disabled = false;
-                submitButton.textContent = defaultButtonText;
+                submitButtons.forEach((button) => {
+                    button.disabled = false;
+                    button.innerHTML = defaultButtonContent.get(button);
+                });
             } catch {
                 showStatus("Povezava je zaštekala. Probaj še enkrat.", "error");
-                submitButton.disabled = false;
-                submitButton.textContent = defaultButtonText;
+                submitButtons.forEach((button) => {
+                    button.disabled = false;
+                    button.innerHTML = defaultButtonContent.get(button);
+                });
             }
         });
     </script>
