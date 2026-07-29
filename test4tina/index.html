@@ -1,0 +1,1824 @@
+<!DOCTYPE html>
+<html lang="sl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#071d19" />
+    <meta property="og:title" content="Tina, čas je za drugi krog 🎱" />
+    <meta property="og:description" content="Ena 8-ka in eno vprašanje." />
+    <meta property="og:url" content="https://viktorrackov.com/test4tina/" />
+    <meta name="invite-code" content="TINA-BILJARD-V2" />
+    <link rel="icon" type="image/png" href="../VR.png" />
+    <title>Tina · drugi krog</title>
+    <style>
+        :root {
+            --cream: #fff9ea;
+            --cream-soft: rgba(255, 249, 234, 0.72);
+            --cream-faint: rgba(255, 249, 234, 0.12);
+            --ink: #071d19;
+            --felt: #0c6a4c;
+            --felt-deep: #064a36;
+            --lime: #c9ff67;
+            --gold: #f5c451;
+            --coral: #ff795f;
+            --line: rgba(255, 249, 234, 0.16);
+            --panel: rgba(5, 28, 24, 0.82);
+            --shadow: rgba(0, 0, 0, 0.38);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            min-height: 100%;
+            background: var(--ink);
+        }
+
+        body {
+            min-height: 100svh;
+            margin: 0;
+            overflow-x: hidden;
+            color: var(--cream);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background:
+                radial-gradient(circle at 14% 12%, rgba(201, 255, 103, 0.12), transparent 27rem),
+                radial-gradient(circle at 88% 82%, rgba(12, 106, 76, 0.34), transparent 34rem),
+                linear-gradient(145deg, #061512 0%, #092720 50%, #061512 100%);
+        }
+
+        body::before,
+        body::after {
+            position: fixed;
+            z-index: 0;
+            border: 1px solid rgba(255, 249, 234, 0.07);
+            border-radius: 50%;
+            content: "";
+            pointer-events: none;
+        }
+
+        body::before {
+            width: 38rem;
+            height: 38rem;
+            top: -25rem;
+            right: -12rem;
+        }
+
+        body::after {
+            width: 24rem;
+            height: 24rem;
+            bottom: -16rem;
+            left: -8rem;
+        }
+
+        button,
+        input,
+        textarea {
+            font: inherit;
+        }
+
+        button {
+            border: 0;
+        }
+
+        .shell {
+            position: relative;
+            z-index: 1;
+            width: min(1100px, calc(100% - 36px));
+            min-height: 100svh;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            grid-template-rows: auto 1fr auto;
+            padding: 24px 0;
+        }
+
+        .topbar,
+        .footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--cream);
+            font-size: 0.78rem;
+            font-weight: 820;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .brand-ball {
+            width: 30px;
+            height: 30px;
+            display: grid;
+            place-items: center;
+            border: 2px solid rgba(255, 255, 255, 0.72);
+            border-radius: 50%;
+            color: white;
+            font-family: Georgia, serif;
+            font-size: 0.8rem;
+            background: #090b0b;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+        }
+
+        .progress-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: min(260px, 42vw);
+        }
+
+        .progress-count {
+            min-width: 38px;
+            color: var(--cream-soft);
+            font-variant-numeric: tabular-nums;
+            font-size: 0.74rem;
+            font-weight: 780;
+            letter-spacing: 0.08em;
+        }
+
+        .progress-track {
+            height: 3px;
+            flex: 1;
+            overflow: hidden;
+            border-radius: 999px;
+            background: rgba(255, 249, 234, 0.12);
+        }
+
+        .progress-bar {
+            width: 25%;
+            height: 100%;
+            border-radius: inherit;
+            background: var(--lime);
+            box-shadow: 0 0 15px rgba(201, 255, 103, 0.44);
+            transition: width 500ms cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        main {
+            min-width: 0;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            place-items: center;
+            padding: clamp(42px, 7vh, 80px) 0;
+        }
+
+        .screen {
+            display: none;
+            width: 100%;
+            min-width: 0;
+        }
+
+        .screen.active {
+            display: block;
+            animation: screen-in 520ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+        }
+
+        @keyframes screen-in {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .copy {
+            width: 100%;
+            min-width: 0;
+            max-width: 790px;
+        }
+
+        .eyebrow {
+            margin: 0 0 20px;
+            color: var(--lime);
+            font-size: 0.76rem;
+            font-weight: 850;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        h1,
+        h2 {
+            margin: 0;
+            text-wrap: balance;
+        }
+
+        h1 {
+            max-width: 890px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(3.7rem, 10vw, 8.6rem);
+            font-weight: 500;
+            letter-spacing: -0.065em;
+            line-height: 0.86;
+        }
+
+        h1.statement-title {
+            max-width: 720px;
+            font-size: clamp(2.8rem, 7vw, 5.8rem);
+            line-height: 0.96;
+        }
+
+        h2 {
+            max-width: 850px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(3.3rem, 8vw, 7rem);
+            font-weight: 500;
+            letter-spacing: -0.055em;
+            line-height: 0.9;
+        }
+
+        .quote {
+            position: relative;
+            width: fit-content;
+            max-width: 700px;
+            margin: clamp(30px, 5vw, 46px) 0 22px;
+            padding: 15px 19px 16px 46px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            color: var(--cream);
+            font-size: clamp(1rem, 2.2vw, 1.22rem);
+            font-weight: 720;
+            background: rgba(255, 249, 234, 0.06);
+            backdrop-filter: blur(12px);
+        }
+
+        .quote::before {
+            position: absolute;
+            left: 18px;
+            top: 8px;
+            color: var(--gold);
+            font-family: Georgia, serif;
+            font-size: 2.3rem;
+            content: "“";
+        }
+
+        .lead {
+            max-width: 620px;
+            margin: 22px 0 0;
+            color: var(--cream-soft);
+            font-size: clamp(1.02rem, 2vw, 1.2rem);
+            line-height: 1.65;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            margin-top: 34px;
+        }
+
+        .button {
+            min-height: 52px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border: 1px solid transparent;
+            border-radius: 999px;
+            padding: 13px 22px;
+            color: var(--ink);
+            font-weight: 850;
+            cursor: pointer;
+            background: var(--lime);
+            box-shadow: 0 16px 34px rgba(201, 255, 103, 0.14);
+            transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            background: #d7ff8b;
+            box-shadow: 0 20px 38px rgba(201, 255, 103, 0.2);
+        }
+
+        .button:active {
+            transform: translateY(0);
+        }
+
+        .button.secondary {
+            color: var(--cream);
+            border-color: var(--line);
+            background: rgba(255, 249, 234, 0.06);
+            box-shadow: none;
+        }
+
+        .button.secondary:hover {
+            background: rgba(255, 249, 234, 0.11);
+        }
+
+        .button.text-button {
+            min-height: 44px;
+            padding: 10px 14px;
+            color: var(--cream-soft);
+            border: 0;
+            background: transparent;
+            box-shadow: none;
+        }
+
+        .button.text-button:hover {
+            color: var(--cream);
+            background: transparent;
+            box-shadow: none;
+        }
+
+        .button:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible,
+        canvas:focus-visible {
+            outline: 3px solid var(--gold);
+            outline-offset: 4px;
+        }
+
+        .button-arrow {
+            font-size: 1.2em;
+            line-height: 1;
+        }
+
+        .fine-print {
+            margin: 18px 0 0;
+            color: rgba(255, 249, 234, 0.46);
+            font-size: 0.8rem;
+        }
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            max-width: 840px;
+            margin-top: 38px;
+        }
+
+        .rule {
+            min-height: 128px;
+            padding: 19px;
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            background: rgba(255, 249, 234, 0.05);
+            backdrop-filter: blur(12px);
+        }
+
+        .rule-number {
+            display: block;
+            margin-bottom: 28px;
+            color: var(--lime);
+            font-family: Georgia, serif;
+            font-size: 1.2rem;
+        }
+
+        .rule p {
+            margin: 0;
+            color: var(--cream-soft);
+            font-size: 0.93rem;
+            line-height: 1.45;
+        }
+
+        .game-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 250px;
+            align-items: center;
+            gap: clamp(22px, 4vw, 48px);
+        }
+
+        .game-copy,
+        .result-layout > *,
+        .invite-layout > * {
+            min-width: 0;
+        }
+
+        .game-copy h2 {
+            font-size: clamp(2.4rem, 5vw, 4.4rem);
+        }
+
+        .attempt-pill {
+            width: fit-content;
+            margin-top: 22px;
+            padding: 8px 12px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            color: var(--cream-soft);
+            font-size: 0.8rem;
+            font-weight: 780;
+            letter-spacing: 0.05em;
+            background: rgba(255, 249, 234, 0.05);
+        }
+
+        .game-hint {
+            min-height: 48px;
+            margin: 14px 0 0;
+            color: var(--cream-soft);
+            font-size: 0.92rem;
+            line-height: 1.5;
+        }
+
+        .table-stage {
+            position: relative;
+            min-width: 0;
+        }
+
+        .canvas-wrap {
+            position: relative;
+            overflow: hidden;
+            border-radius: 22px;
+            filter: drop-shadow(0 32px 46px rgba(0, 0, 0, 0.34));
+        }
+
+        #pool-canvas {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 22px;
+            cursor: grab;
+            touch-action: none;
+        }
+
+        #pool-canvas.aiming {
+            cursor: grabbing;
+        }
+
+        .game-tutorial {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            border-radius: inherit;
+            pointer-events: none;
+            opacity: 1;
+            transition: opacity 240ms ease;
+        }
+
+        .game-tutorial.hidden {
+            opacity: 0;
+        }
+
+        .tutorial-sequence {
+            position: absolute;
+            z-index: 3;
+            left: 50%;
+            top: 7%;
+            padding: 7px 11px;
+            border: 1px solid rgba(255, 249, 234, 0.3);
+            border-radius: 999px;
+            color: var(--cream);
+            font-size: clamp(0.52rem, 1.25vw, 0.7rem);
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            background: rgba(4, 23, 18, 0.72);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
+            transform: translateX(-50%);
+        }
+
+        .goal-marker {
+            position: absolute;
+            z-index: 2;
+            left: 93.4%;
+            top: 11.8%;
+            width: clamp(48px, 7.5vw, 76px);
+            aspect-ratio: 1;
+            border: 3px solid var(--lime);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 0 7px rgba(201, 255, 103, 0.12), 0 0 30px rgba(201, 255, 103, 0.65);
+            animation: goal-pulse 1150ms ease-in-out infinite;
+        }
+
+        .goal-marker span {
+            position: absolute;
+            left: 50%;
+            top: calc(100% + 7px);
+            padding: 4px 7px;
+            border-radius: 999px;
+            color: var(--ink);
+            font-size: clamp(0.48rem, 1.1vw, 0.64rem);
+            font-weight: 950;
+            letter-spacing: 0.1em;
+            line-height: 1;
+            white-space: nowrap;
+            background: var(--lime);
+            transform: translateX(-50%);
+        }
+
+        @keyframes goal-pulse {
+            50% {
+                box-shadow: 0 0 0 15px rgba(201, 255, 103, 0.04), 0 0 42px rgba(201, 255, 103, 0.86);
+                transform: translate(-50%, -50%) scale(1.08);
+            }
+        }
+
+        .touch-marker {
+            position: absolute;
+            z-index: 3;
+            left: 28%;
+            top: 59%;
+            width: clamp(42px, 6.4vw, 66px);
+            aspect-ratio: 1;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 0 0 rgba(245, 196, 81, 0.5);
+            animation: touch-pulse 1250ms ease-out infinite;
+        }
+
+        .touch-marker::after {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 10px;
+            aspect-ratio: 1;
+            border: 2px solid var(--ink);
+            border-radius: 50%;
+            background: var(--gold);
+            transform: translate(-50%, -50%);
+            content: "";
+        }
+
+        @keyframes touch-pulse {
+            70% {
+                box-shadow: 0 0 0 18px rgba(245, 196, 81, 0);
+            }
+        }
+
+        .touch-label,
+        .pull-label {
+            position: absolute;
+            z-index: 3;
+            padding: 5px 8px;
+            border-radius: 999px;
+            color: var(--ink);
+            font-size: clamp(0.48rem, 1.05vw, 0.62rem);
+            font-weight: 950;
+            letter-spacing: 0.08em;
+            line-height: 1;
+            text-transform: uppercase;
+            white-space: nowrap;
+            background: var(--gold);
+        }
+
+        .touch-label {
+            left: 28%;
+            top: 68%;
+            transform: translateX(-50%);
+        }
+
+        .pull-label {
+            left: 12%;
+            top: 82%;
+            animation: pull-label-fade 1550ms ease-in-out infinite;
+        }
+
+        .pull-path {
+            position: absolute;
+            z-index: 2;
+            left: 28%;
+            top: 59%;
+            width: clamp(82px, 13vw, 145px);
+            border-top: 3px dashed rgba(245, 196, 81, 0.88);
+            transform: rotate(151deg);
+            transform-origin: left center;
+        }
+
+        .pull-path::after {
+            position: absolute;
+            right: -1px;
+            top: -7px;
+            width: 11px;
+            height: 11px;
+            border-right: 3px solid var(--gold);
+            border-bottom: 3px solid var(--gold);
+            transform: rotate(-45deg);
+            content: "";
+        }
+
+        .touch-finger {
+            position: absolute;
+            z-index: 4;
+            left: 28%;
+            top: 59%;
+            width: clamp(24px, 3.2vw, 34px);
+            aspect-ratio: 1;
+            border: 3px solid rgba(255, 255, 255, 0.92);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.24);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.32);
+            transform: translate(-50%, -50%);
+            animation: finger-pull 1550ms cubic-bezier(0.45, 0, 0.3, 1) infinite;
+        }
+
+        @keyframes finger-pull {
+            0%,
+            14% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1.35);
+            }
+
+            24% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            72% {
+                opacity: 1;
+                transform: translate(calc(-50% + clamp(-130px, -13vw, -58px)), calc(-50% + clamp(32px, 7vw, 64px))) scale(0.9);
+            }
+
+            82%,
+            100% {
+                opacity: 0;
+                transform: translate(calc(-50% + clamp(-130px, -13vw, -58px)), calc(-50% + clamp(32px, 7vw, 64px))) scale(0.7);
+            }
+        }
+
+        @keyframes pull-label-fade {
+            0%,
+            20%,
+            90%,
+            100% {
+                opacity: 0.42;
+            }
+
+            45%,
+            75% {
+                opacity: 1;
+            }
+        }
+
+        .table-caption {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            margin: 12px 8px 0;
+            color: rgba(255, 249, 234, 0.48);
+            font-size: 0.74rem;
+        }
+
+        .tutorial-replay {
+            border: 0;
+            padding: 5px 7px;
+            color: rgba(255, 249, 234, 0.68);
+            font: inherit;
+            font-weight: 760;
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .tutorial-replay:hover {
+            color: var(--cream);
+        }
+
+        .target-key {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .target-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--lime);
+            box-shadow: 0 0 12px var(--lime);
+        }
+
+        .result-layout,
+        .invite-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+            align-items: end;
+            gap: clamp(34px, 7vw, 90px);
+        }
+
+        .invite-layout.resolved {
+            grid-template-columns: minmax(0, 720px);
+            align-items: start;
+        }
+
+        .result-stamp {
+            align-self: center;
+            justify-self: center;
+            width: clamp(180px, 23vw, 250px);
+            aspect-ratio: 1;
+            display: grid;
+            place-items: center;
+            border: 2px solid var(--lime);
+            border-radius: 50%;
+            color: var(--lime);
+            font-family: Georgia, serif;
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-style: italic;
+            text-align: center;
+            transform: rotate(-8deg);
+            box-shadow: inset 0 0 0 8px var(--ink), inset 0 0 0 10px rgba(201, 255, 103, 0.34);
+        }
+
+        .invite-card {
+            padding: 24px;
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            background: var(--panel);
+            box-shadow: 0 28px 70px rgba(0, 0, 0, 0.26);
+            backdrop-filter: blur(18px);
+        }
+
+        .invite-card[hidden] {
+            display: none;
+        }
+
+        .detail {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 14px 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .detail:last-child {
+            border-bottom: 1px solid var(--line);
+        }
+
+        .detail-label {
+            color: rgba(255, 249, 234, 0.46);
+            font-size: 0.72rem;
+            font-weight: 820;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .detail-value {
+            color: var(--cream);
+            font-weight: 760;
+            text-align: right;
+        }
+
+        .invite-card .actions {
+            display: grid;
+            margin-top: 22px;
+        }
+
+        .response-panel {
+            max-width: 620px;
+            margin-top: 32px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            background: rgba(255, 249, 234, 0.05);
+        }
+
+        .response-panel[hidden] {
+            display: none;
+        }
+
+        .response-panel h3 {
+            margin: 0 0 4px;
+            font-family: Georgia, serif;
+            font-size: 1.55rem;
+            font-weight: 500;
+        }
+
+        .response-panel > p {
+            margin: 0 0 18px;
+            color: var(--cream-soft);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .field {
+            display: grid;
+            gap: 7px;
+            margin-bottom: 13px;
+        }
+
+        .field span {
+            color: rgba(255, 249, 234, 0.58);
+            font-size: 0.72rem;
+            font-weight: 820;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .field input,
+        .field textarea {
+            width: 100%;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 12px 13px;
+            color: var(--cream);
+            background: rgba(255, 249, 234, 0.07);
+            outline: 0;
+        }
+
+        .field textarea {
+            min-height: 78px;
+            resize: vertical;
+        }
+
+        .field input::placeholder,
+        .field textarea::placeholder {
+            color: rgba(255, 249, 234, 0.32);
+        }
+
+        .form-status {
+            margin: 13px 0 0;
+            color: var(--lime);
+            font-size: 0.9rem;
+            font-weight: 720;
+        }
+
+        .form-status.error {
+            color: var(--coral);
+        }
+
+        .form-status[hidden] {
+            display: none;
+        }
+
+        .answer-complete .field,
+        .answer-complete #send-answer {
+            display: none;
+        }
+
+        .decline-note {
+            max-width: 620px;
+            margin-top: 26px;
+            padding: 18px;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            color: var(--cream-soft);
+            background: rgba(255, 249, 234, 0.05);
+            line-height: 1.55;
+        }
+
+        .decline-note[hidden] {
+            display: none;
+        }
+
+        .footer {
+            color: rgba(255, 249, 234, 0.34);
+            font-size: 0.72rem;
+        }
+
+        .footer-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .footer-status::before {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--lime);
+            box-shadow: 0 0 8px rgba(201, 255, 103, 0.7);
+            content: "";
+        }
+
+        .confetti {
+            position: fixed;
+            z-index: 10;
+            top: -20px;
+            width: 9px;
+            height: 16px;
+            border-radius: 2px;
+            pointer-events: none;
+            animation: confetti-fall 1250ms ease-in forwards;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translate3d(var(--drift), 105vh, 0) rotate(760deg);
+                opacity: 0.15;
+            }
+        }
+
+        @media (max-width: 820px) {
+            .shell {
+                width: min(100% - 26px, 680px);
+                padding-top: max(16px, env(safe-area-inset-top));
+                padding-bottom: max(16px, env(safe-area-inset-bottom));
+            }
+
+            .progress-wrap {
+                min-width: 130px;
+            }
+
+            main {
+                padding: 38px 0;
+            }
+
+            h1 {
+                font-size: clamp(3.3rem, 17vw, 6rem);
+            }
+
+            h2 {
+                font-size: clamp(3rem, 14vw, 5rem);
+            }
+
+            .rules-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .rule {
+                min-height: 0;
+                display: grid;
+                grid-template-columns: 42px 1fr;
+                align-items: center;
+                padding: 14px 16px;
+            }
+
+            .rule-number {
+                margin: 0;
+            }
+
+            .game-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .game-copy {
+                order: -1;
+                display: grid;
+                grid-template-columns: 1fr auto;
+                gap: 8px 18px;
+                align-items: end;
+            }
+
+            .game-copy .eyebrow {
+                grid-column: 1 / -1;
+                margin-bottom: 4px;
+            }
+
+            .game-copy h2 {
+                font-size: 2.45rem;
+            }
+
+            .attempt-pill {
+                margin: 0;
+            }
+
+            .game-hint {
+                grid-column: 1 / -1;
+                margin-top: 2px;
+            }
+
+            .result-layout,
+            .invite-layout {
+                grid-template-columns: 1fr;
+                align-items: start;
+            }
+
+            .result-stamp {
+                width: 160px;
+                justify-self: start;
+            }
+
+            .invite-card {
+                padding: 18px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .brand-text {
+                display: none;
+            }
+
+            .quote {
+                border-radius: 18px;
+            }
+
+            h1 {
+                font-size: clamp(2.9rem, 14vw, 4.3rem);
+                line-height: 0.9;
+            }
+
+            h1.statement-title {
+                font-size: clamp(2.15rem, 10vw, 3.2rem);
+                line-height: 1;
+            }
+
+            h2 {
+                font-size: clamp(2.8rem, 13vw, 4rem);
+                line-height: 0.94;
+            }
+
+            .lead {
+                font-size: 1rem;
+                line-height: 1.55;
+            }
+
+            .actions {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .actions .button {
+                width: 100%;
+            }
+
+            .table-caption span:last-child {
+                display: inline-flex;
+            }
+
+            .keyboard-hint {
+                display: none !important;
+            }
+
+            .tutorial-sequence {
+                top: 5%;
+                padding: 5px 8px;
+            }
+
+            .goal-marker span {
+                top: calc(100% + 4px);
+            }
+
+            .footer span:last-child {
+                display: none;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 1ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 1ms !important;
+            }
+
+            .touch-finger {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shell">
+        <header class="topbar">
+            <div class="brand">
+                <span class="brand-ball" aria-hidden="true">8</span>
+                <span class="brand-text">Tina · drugi krog</span>
+            </div>
+            <div class="progress-wrap" aria-label="Napredek">
+                <span class="progress-count"><span id="current-step">01</span> / 04</span>
+                <div class="progress-track" aria-hidden="true">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="screen active" id="screen-intro" data-step="1" aria-labelledby="intro-title">
+                <div class="copy">
+                    <p class="eyebrow">Rekla si:</p>
+                    <h1 class="statement-title" id="intro-title">“Jst bi rekla<br />vse po mau🙂‍↕️”</h1>
+                    <p class="lead">
+                        Pa sem si mislil: bomo vidli 😄
+                    </p>
+                    <div class="actions">
+                        <button class="button" id="start-game" type="button">
+                            Ajde, pokaži <span aria-hidden="true">🎱</span>
+                        </button>
+                    </div>
+                    <p class="fine-print">Samo ena 8-ka. Okej, pa trije poskusi.</p>
+                </div>
+            </section>
+
+            <section class="screen" id="screen-game" data-step="2" aria-labelledby="game-title">
+                <div class="game-layout">
+                    <div class="table-stage">
+                        <div class="canvas-wrap">
+                            <canvas
+                                id="pool-canvas"
+                                width="1000"
+                                height="560"
+                                tabindex="0"
+                                role="img"
+                                aria-label="Mini biljard. Dotakni se 8-ke, potegni nazaj in jo spusti proti označeni zgornji desni luknji."
+                            ></canvas>
+                            <div class="game-tutorial" id="game-tutorial" aria-hidden="true">
+                                <div class="tutorial-sequence">Primi · potegni · spusti</div>
+                                <div class="goal-marker"><span>Cilj</span></div>
+                                <div class="touch-marker"></div>
+                                <div class="touch-label">Primi 8-ko</div>
+                                <div class="pull-path"></div>
+                                <div class="touch-finger"></div>
+                                <div class="pull-label">Potegni sem</div>
+                            </div>
+                        </div>
+                        <div class="table-caption">
+                            <span class="target-key"><i class="target-dot"></i> označena luknja</span>
+                            <button class="tutorial-replay" id="tutorial-replay" type="button">Pokaži navodila</button>
+                            <span class="keyboard-hint">Tipkovnica: ← → in preslednica</span>
+                        </div>
+                    </div>
+                    <div class="game-copy">
+                        <p class="eyebrow">Na vrsti je biljard</p>
+                        <h2 id="game-title">Spravi 8-ko v luknjo.</h2>
+                        <div class="attempt-pill">Poskus <span id="attempt-number">1</span> / 3</div>
+                        <p class="game-hint" id="game-hint" role="status" aria-live="polite">
+                            Potegni od krogle nazaj, nameri in spusti.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="screen" id="screen-result" data-step="3" aria-labelledby="result-title">
+                <div class="result-layout">
+                    <div class="copy">
+                        <p class="eyebrow">Moment resnice</p>
+                        <h2 id="result-title">Okej, priznam.</h2>
+                        <p class="lead" id="result-copy">
+                            Očitno ti gre. Zdej me pa zanima, kako bi šlo na pravi mizi.
+                        </p>
+                        <div class="actions">
+                            <button class="button" type="button" data-next="invite">
+                                Greva? <span class="button-arrow" aria-hidden="true">→</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="result-stamp" id="result-stamp" aria-hidden="true">
+                        Ti<br />gre.
+                    </div>
+                </div>
+            </section>
+
+            <section class="screen" id="screen-invite" data-step="4" aria-labelledby="invite-title">
+                <div class="invite-layout">
+                    <div class="copy">
+                        <p class="eyebrow">No, zdej pa zares</p>
+                        <h2 id="invite-title">Greva na biljard?</h2>
+                        <!-- <p class="lead">
+                            V bistvu sem te hotel samo vprašat, če bi šla še enkrat z mano ven.
+                            Lahko greva na biljard pa nekaj spit.
+                        </p> -->
+
+                        <div class="response-panel" id="response-panel" hidden>
+                            <!-- <h3>Lepo 🙂</h3> -->
+                            <!-- <p>Napiši, kdaj ti približno paše, pa se zmeniva.</p> -->
+                            <form
+                                id="answer-form"
+                                action="https://formspree.io/f/mnjkeawv"
+                                method="POST"
+                            >
+                                <input type="hidden" name="_subject" value="Tina V2 · sprejet biljard" />
+                                <input type="hidden" name="dogodek" value="koncni_odgovor" />
+                                <input type="hidden" name="odgovor" value="Ja, greva" />
+                                <input type="hidden" name="invite_code" value="TINA-BILJARD-V2" />
+                                <input type="hidden" name="session_id" id="answer-session-id" />
+                                <input type="hidden" name="rezultat_igre" id="answer-game-result" />
+
+                                <label class="field" for="termin">
+                                    <span>Kdaj ti približno ustreza?</span>
+                                    <input id="termin" name="termin" type="text" placeholder="npr. petek zvečer" autocomplete="off" />
+                                </label>
+                                <label class="field" for="sporocilo">
+                                    <span>Sporočilo</span>
+                                    <textarea id="sporocilo" name="sporocilo" placeholder="Lahko tudi samo napišeš dan."></textarea>
+                                </label>
+                                <button class="button" id="send-answer" type="submit">Pošlji odgovor</button>
+                                <p class="form-status" id="answer-status" role="status" aria-live="polite" hidden></p>
+                            </form>
+                        </div>
+
+                        <p class="decline-note" id="decline-note" role="status" hidden>
+                            Razumem, brez skrbi 🙂
+                        </p>
+                    </div>
+
+                    <aside class="invite-card" id="invite-card" aria-label="Podrobnosti povabila">
+                        <div class="detail">
+                            <span class="detail-label">Kandidatkinja</span>
+                            <span class="detail-value">Tina</span>
+                        </div>
+                        <div class="detail">
+                            <span class="detail-label">Plan</span>
+                            <span class="detail-value">biljard + pijača</span>
+                        </div>
+                        <div class="detail">
+                            <span class="detail-label">Kdaj</span>
+                            <span class="detail-value">ko ti paše</span>
+                        </div>
+                        <div class="actions" id="invite-actions">
+                            <button class="button" id="accept-invite" type="button">Ja, greva 🎱</button>
+                            <button class="button text-button" id="decline-invite" type="button">Tokrat raje ne</button>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <span class="footer-status">8-ka čaka</span>
+            <span>narejeno za Tino</span>
+        </footer>
+    </div>
+
+    <form id="journey-form" action="https://formspree.io/f/mnjkeawv" method="POST" hidden aria-hidden="true">
+        <input type="hidden" name="_subject" value="Tina V2 · korak" />
+        <input type="hidden" name="vrsta" value="samodejni dogodek" />
+        <input type="hidden" name="invite_code" value="TINA-BILJARD-V2" />
+        <input type="hidden" name="session_id" />
+        <input type="hidden" name="zaporedje" />
+        <input type="hidden" name="dogodek" />
+        <input type="hidden" name="korak" />
+        <input type="hidden" name="podrobnosti" />
+        <input type="hidden" name="cas" />
+    </form>
+
+    <script>
+        (() => {
+            "use strict";
+
+            const TRACK_ENDPOINT = "https://formspree.io/f/mnjkeawv";
+            const SESSION_KEY = "tina-biljard-v2-session";
+            const SEQUENCE_KEY = "tina-biljard-v2-sequence";
+            const journeyForm = document.getElementById("journey-form");
+            const screens = [...document.querySelectorAll(".screen")];
+            const progressBar = document.getElementById("progress-bar");
+            const currentStep = document.getElementById("current-step");
+            const answerSessionId = document.getElementById("answer-session-id");
+            const answerGameResult = document.getElementById("answer-game-result");
+
+            let sessionId = sessionStorage.getItem(SESSION_KEY);
+            if (!sessionId) {
+                sessionId = window.crypto?.randomUUID?.()
+                    || `tina-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+                sessionStorage.setItem(SESSION_KEY, sessionId);
+            }
+
+            let eventSequence = Number(sessionStorage.getItem(SEQUENCE_KEY) || 0);
+            let gameResult = "ni_odigrano";
+            let trackingQueue = Promise.resolve();
+
+            const track = (eventName, step, details = "") => {
+                eventSequence += 1;
+                sessionStorage.setItem(SEQUENCE_KEY, String(eventSequence));
+                const formData = new FormData(journeyForm);
+                formData.set("_subject", `Tina V2 · ${eventSequence} · ${eventName}`);
+                formData.set("session_id", sessionId);
+                formData.set("zaporedje", String(eventSequence));
+                formData.set("dogodek", eventName);
+                formData.set("korak", step);
+                formData.set("podrobnosti", details);
+                formData.set("cas", new Date().toISOString());
+
+                trackingQueue = trackingQueue
+                    .then(() => fetch(TRACK_ENDPOINT, {
+                        method: "POST",
+                        body: formData,
+                        headers: { Accept: "application/json" },
+                        keepalive: true
+                    }))
+                    .catch(() => {
+                        // Sledenje nikoli ne sme prekiniti povabila.
+                    });
+            };
+
+            const showScreen = (name, trackingEvent = `odprt_${name}`) => {
+                const nextScreen = document.getElementById(`screen-${name}`);
+                if (!nextScreen) return;
+
+                screens.forEach((screen) => {
+                    screen.classList.toggle("active", screen === nextScreen);
+                });
+
+                const step = Number(nextScreen.dataset.step || 1);
+                currentStep.textContent = String(step).padStart(2, "0");
+                progressBar.style.width = `${step * 25}%`;
+                document.title = step === 4
+                    ? "Greva igrat biljard? 🎱"
+                    : "Tina · drugi krog";
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                track(trackingEvent, `${step}/4`, `zaslon=${name}`);
+            };
+
+            document.querySelectorAll("[data-next]").forEach((button) => {
+                button.addEventListener("click", () => {
+                    const destination = button.dataset.next;
+                    showScreen(destination);
+                });
+            });
+
+            track("odprta_stran", "1/4", `zaslon=intro; referrer=${document.referrer || "direktno"}`);
+
+            // --- Mini biljard -------------------------------------------------
+            const canvas = document.getElementById("pool-canvas");
+            const ctx = canvas.getContext("2d");
+            const attemptNumber = document.getElementById("attempt-number");
+            const gameHint = document.getElementById("game-hint");
+            const resultTitle = document.getElementById("result-title");
+            const resultCopy = document.getElementById("result-copy");
+            const resultStamp = document.getElementById("result-stamp");
+            const startGameButton = document.getElementById("start-game");
+            const gameTutorial = document.getElementById("game-tutorial");
+            const tutorialReplay = document.getElementById("tutorial-replay");
+
+            const WORLD = { width: 1000, height: 560 };
+            const BOUNDS = { left: 58, right: 942, top: 58, bottom: 502 };
+            const TARGET = { x: 934, y: 66, radius: 34 };
+            const pockets = [
+                { x: 62, y: 62 },
+                { x: 500, y: 56 },
+                TARGET,
+                { x: 62, y: 498 },
+                { x: 500, y: 504 },
+                { x: 938, y: 498 }
+            ];
+
+            const ball = {
+                x: 280,
+                y: 330,
+                startX: 280,
+                startY: 330,
+                radius: 19,
+                vx: 0,
+                vy: 0,
+                moving: false
+            };
+
+            let attempt = 1;
+            let aiming = false;
+            let aimPoint = { x: ball.x - 100, y: ball.y + 20 };
+            let keyboardAngle = -0.47;
+            let animationFrame = 0;
+            let previousTime = 0;
+            let shotStartedAt = 0;
+            let gameFinished = false;
+
+            const showTutorial = () => {
+                gameTutorial.classList.remove("hidden");
+                gameHint.textContent = "Primi 8-ko, potegni nazaj od cilja in spusti.";
+            };
+
+            const hideTutorial = () => {
+                gameTutorial.classList.add("hidden");
+            };
+
+            const resetBall = () => {
+                ball.x = ball.startX;
+                ball.y = ball.startY;
+                ball.vx = 0;
+                ball.vy = 0;
+                ball.moving = false;
+                aiming = false;
+                aimPoint = {
+                    x: ball.x - Math.cos(keyboardAngle) * 120,
+                    y: ball.y - Math.sin(keyboardAngle) * 120
+                };
+                canvas.classList.remove("aiming");
+                draw();
+            };
+
+            const roundedRect = (x, y, width, height, radius) => {
+                const r = Math.min(radius, width / 2, height / 2);
+                ctx.beginPath();
+                ctx.roundRect(x, y, width, height, r);
+            };
+
+            const draw = () => {
+                ctx.clearRect(0, 0, WORLD.width, WORLD.height);
+
+                const wood = ctx.createLinearGradient(0, 0, WORLD.width, WORLD.height);
+                wood.addColorStop(0, "#8b5b31");
+                wood.addColorStop(0.48, "#3b2115");
+                wood.addColorStop(1, "#9c6938");
+                roundedRect(4, 4, 992, 552, 34);
+                ctx.fillStyle = wood;
+                ctx.fill();
+
+                roundedRect(25, 25, 950, 510, 26);
+                ctx.fillStyle = "#083b2d";
+                ctx.fill();
+
+                const felt = ctx.createRadialGradient(450, 230, 30, 500, 280, 600);
+                felt.addColorStop(0, "#12815c");
+                felt.addColorStop(1, "#07513b");
+                roundedRect(51, 51, 898, 458, 18);
+                ctx.fillStyle = felt;
+                ctx.fill();
+
+                // Subtilne oznake na ograji.
+                ctx.fillStyle = "rgba(255,249,234,.45)";
+                [205, 350, 650, 795].forEach((x) => {
+                    ctx.save();
+                    ctx.translate(x, 37);
+                    ctx.rotate(Math.PI / 4);
+                    ctx.fillRect(-4, -4, 8, 8);
+                    ctx.restore();
+                    ctx.save();
+                    ctx.translate(x, 523);
+                    ctx.rotate(Math.PI / 4);
+                    ctx.fillRect(-4, -4, 8, 8);
+                    ctx.restore();
+                });
+
+                pockets.forEach((pocket) => {
+                    const isTarget = pocket === TARGET;
+                    if (isTarget) {
+                        const glow = ctx.createRadialGradient(pocket.x, pocket.y, 4, pocket.x, pocket.y, 58);
+                        glow.addColorStop(0, "rgba(201,255,103,.85)");
+                        glow.addColorStop(0.45, "rgba(201,255,103,.25)");
+                        glow.addColorStop(1, "rgba(201,255,103,0)");
+                        ctx.beginPath();
+                        ctx.arc(pocket.x, pocket.y, 58, 0, Math.PI * 2);
+                        ctx.fillStyle = glow;
+                        ctx.fill();
+                    }
+                    ctx.beginPath();
+                    ctx.arc(pocket.x, pocket.y, pocket.radius || 29, 0, Math.PI * 2);
+                    ctx.fillStyle = "#020706";
+                    ctx.fill();
+                    if (isTarget) {
+                        ctx.beginPath();
+                        ctx.arc(pocket.x, pocket.y, 38, 0, Math.PI * 2);
+                        ctx.strokeStyle = "#c9ff67";
+                        ctx.lineWidth = 3;
+                        ctx.stroke();
+                    }
+                });
+
+                if (!ball.moving && !gameFinished) {
+                    const dx = ball.x - aimPoint.x;
+                    const dy = ball.y - aimPoint.y;
+                    const distance = Math.hypot(dx, dy) || 1;
+                    const strength = Math.min(distance, 190);
+                    const ux = dx / distance;
+                    const uy = dy / distance;
+
+                    ctx.save();
+                    ctx.setLineDash([11, 10]);
+                    ctx.beginPath();
+                    ctx.moveTo(ball.x + ux * 28, ball.y + uy * 28);
+                    ctx.lineTo(ball.x + ux * 350, ball.y + uy * 350);
+                    ctx.strokeStyle = "rgba(255,249,234,.52)";
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                    ctx.restore();
+
+                    if (aiming) {
+                        ctx.beginPath();
+                        ctx.moveTo(ball.x - ux * 29, ball.y - uy * 29);
+                        ctx.lineTo(ball.x - ux * (48 + strength), ball.y - uy * (48 + strength));
+                        ctx.strokeStyle = "#f5c451";
+                        ctx.lineWidth = 8;
+                        ctx.lineCap = "round";
+                        ctx.stroke();
+                    }
+                }
+
+                // Senca in 8-ka.
+                ctx.beginPath();
+                ctx.ellipse(ball.x + 7, ball.y + 10, 22, 12, 0, 0, Math.PI * 2);
+                ctx.fillStyle = "rgba(0,0,0,.25)";
+                ctx.fill();
+
+                const ballGradient = ctx.createRadialGradient(ball.x - 7, ball.y - 8, 2, ball.x, ball.y, 25);
+                ballGradient.addColorStop(0, "#4c5351");
+                ballGradient.addColorStop(0.35, "#151817");
+                ballGradient.addColorStop(1, "#030404");
+                ctx.beginPath();
+                ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+                ctx.fillStyle = ballGradient;
+                ctx.fill();
+
+                ctx.beginPath();
+                ctx.arc(ball.x, ball.y, 8.5, 0, Math.PI * 2);
+                ctx.fillStyle = "#fff9ea";
+                ctx.fill();
+                ctx.fillStyle = "#0a1110";
+                ctx.font = "bold 11px Georgia";
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.fillText("8", ball.x, ball.y + 0.5);
+            };
+
+            const toWorldPoint = (event) => {
+                const rect = canvas.getBoundingClientRect();
+                return {
+                    x: (event.clientX - rect.left) * (WORLD.width / rect.width),
+                    y: (event.clientY - rect.top) * (WORLD.height / rect.height)
+                };
+            };
+
+            const launch = (dx, dy, source = "drag") => {
+                if (ball.moving || gameFinished) return;
+                const distance = Math.hypot(dx, dy);
+                if (distance < 20) {
+                    gameHint.textContent = "Še malo bolj potegni nazaj.";
+                    return;
+                }
+
+                hideTutorial();
+                const cappedDistance = Math.min(distance, 190);
+                const speed = 4.5 * cappedDistance;
+                ball.vx = (dx / distance) * speed;
+                ball.vy = (dy / distance) * speed;
+                ball.moving = true;
+                aiming = false;
+                shotStartedAt = performance.now();
+                canvas.classList.remove("aiming");
+                gameHint.textContent = "Okej, gledam ...";
+                previousTime = performance.now();
+                cancelAnimationFrame(animationFrame);
+                animationFrame = requestAnimationFrame(animate);
+            };
+
+            const finishGame = (success) => {
+                gameFinished = true;
+                ball.moving = false;
+                gameResult = success ? `zadetek_v_${attempt}_poskusu` : "brez_zadetka";
+                answerGameResult.value = gameResult;
+
+                if (success) {
+                    resultTitle.textContent = "Okej, priznam.";
+                    resultCopy.textContent = "Očitno ti gre. Zdej me pa zanima, kako bi šlo na pravi mizi.";
+                    resultStamp.innerHTML = "Ti<br />gre.";
+                    createConfetti();
+                } else {
+                    resultTitle.textContent = "Skoraj 😄";
+                    resultCopy.textContent = "Tole morava probat na pravi mizi.";
+                    resultStamp.innerHTML = "Prava<br />miza";
+                }
+
+                setTimeout(() => {
+                    showScreen("result", success ? "igra_uspesna" : "igra_neuspesna");
+                }, 620);
+            };
+
+            const completeMiss = (reason = "zgreseno") => {
+                if (!ball.moving || gameFinished) return;
+                ball.moving = false;
+
+                if (attempt >= 3) {
+                    gameHint.textContent = "No, to je blo to 😄";
+                    finishGame(false);
+                    return;
+                }
+
+                const comments = [
+                    "Še enkrat.",
+                    "Skoraj.",
+                    "Ajde, še enkrat."
+                ];
+                gameHint.textContent = comments[attempt - 1];
+                attempt += 1;
+                attemptNumber.textContent = String(attempt);
+                setTimeout(resetBall, 900);
+            };
+
+            const animate = (now) => {
+                const dt = Math.min((now - previousTime) / 1000, 0.032);
+                previousTime = now;
+
+                ball.x += ball.vx * dt;
+                ball.y += ball.vy * dt;
+
+                const friction = Math.pow(0.45, dt);
+                ball.vx *= friction;
+                ball.vy *= friction;
+
+                if (ball.x - ball.radius < BOUNDS.left) {
+                    ball.x = BOUNDS.left + ball.radius;
+                    ball.vx = Math.abs(ball.vx) * 0.82;
+                } else if (ball.x + ball.radius > BOUNDS.right) {
+                    ball.x = BOUNDS.right - ball.radius;
+                    ball.vx = -Math.abs(ball.vx) * 0.82;
+                }
+
+                if (ball.y - ball.radius < BOUNDS.top) {
+                    ball.y = BOUNDS.top + ball.radius;
+                    ball.vy = Math.abs(ball.vy) * 0.82;
+                } else if (ball.y + ball.radius > BOUNDS.bottom) {
+                    ball.y = BOUNDS.bottom - ball.radius;
+                    ball.vy = -Math.abs(ball.vy) * 0.82;
+                }
+
+                for (const pocket of pockets) {
+                    const distance = Math.hypot(ball.x - pocket.x, ball.y - pocket.y);
+                    const captureRadius = pocket === TARGET ? 39 : 31;
+                    if (distance < captureRadius) {
+                        if (pocket === TARGET) {
+                            ball.x = pocket.x;
+                            ball.y = pocket.y;
+                            ball.vx = 0;
+                            ball.vy = 0;
+                            draw();
+                            finishGame(true);
+                            return;
+                        }
+                        completeMiss("napacna_luknja");
+                        draw();
+                        return;
+                    }
+                }
+
+                draw();
+
+                const speed = Math.hypot(ball.vx, ball.vy);
+                if (speed < 15 || now - shotStartedAt > 9000) {
+                    completeMiss("krogla_se_je_ustavila");
+                    return;
+                }
+
+                animationFrame = requestAnimationFrame(animate);
+            };
+
+            canvas.addEventListener("pointerdown", (event) => {
+                if (ball.moving || gameFinished) return;
+                const point = toWorldPoint(event);
+                if (Math.hypot(point.x - ball.x, point.y - ball.y) > 70) return;
+                hideTutorial();
+                aiming = true;
+                aimPoint = point;
+                canvas.classList.add("aiming");
+                canvas.setPointerCapture(event.pointerId);
+                draw();
+            });
+
+            canvas.addEventListener("pointermove", (event) => {
+                if (!aiming || ball.moving || gameFinished) return;
+                aimPoint = toWorldPoint(event);
+                draw();
+            });
+
+            const releasePointer = (event) => {
+                if (!aiming || ball.moving || gameFinished) return;
+                const point = toWorldPoint(event);
+                aimPoint = point;
+                launch(ball.x - point.x, ball.y - point.y);
+            };
+
+            canvas.addEventListener("pointerup", releasePointer);
+            canvas.addEventListener("pointercancel", () => {
+                aiming = false;
+                canvas.classList.remove("aiming");
+                draw();
+            });
+
+            canvas.addEventListener("keydown", (event) => {
+                if (ball.moving || gameFinished) return;
+                if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+                    event.preventDefault();
+                    hideTutorial();
+                    keyboardAngle += event.key === "ArrowLeft" ? -0.05 : 0.05;
+                    keyboardAngle = Math.max(-1.25, Math.min(0.35, keyboardAngle));
+                    aimPoint = {
+                        x: ball.x - Math.cos(keyboardAngle) * 140,
+                        y: ball.y - Math.sin(keyboardAngle) * 140
+                    };
+                    draw();
+                }
+                if (event.key === " " || event.key === "Enter") {
+                    event.preventDefault();
+                    hideTutorial();
+                    launch(Math.cos(keyboardAngle) * 150, Math.sin(keyboardAngle) * 150, "tipkovnica");
+                }
+            });
+
+            tutorialReplay.addEventListener("click", () => {
+                if (ball.moving || gameFinished) return;
+                showTutorial();
+            });
+
+            startGameButton.addEventListener("click", () => {
+                attempt = 1;
+                attemptNumber.textContent = "1";
+                gameFinished = false;
+                gameResult = "v_teku";
+                resetBall();
+                showTutorial();
+                showScreen("game", "zacetek_igre");
+                setTimeout(() => canvas.focus({ preventScroll: true }), 550);
+            });
+
+            const createConfetti = () => {
+                if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+                const colors = ["#c9ff67", "#f5c451", "#fff9ea", "#ff795f", "#0f8d64"];
+                for (let i = 0; i < 28; i += 1) {
+                    const piece = document.createElement("i");
+                    piece.className = "confetti";
+                    piece.style.left = `${8 + Math.random() * 84}%`;
+                    piece.style.background = colors[i % colors.length];
+                    piece.style.setProperty("--drift", `${-90 + Math.random() * 180}px`);
+                    piece.style.animationDelay = `${Math.random() * 260}ms`;
+                    document.body.appendChild(piece);
+                    setTimeout(() => piece.remove(), 1800);
+                }
+            };
+
+            draw();
+
+            // --- Odgovor na povabilo -----------------------------------------
+            const acceptInvite = document.getElementById("accept-invite");
+            const declineInvite = document.getElementById("decline-invite");
+            const inviteActions = document.getElementById("invite-actions");
+            const inviteCard = document.getElementById("invite-card");
+            const inviteLayout = document.querySelector("#screen-invite .invite-layout");
+            const responsePanel = document.getElementById("response-panel");
+            const declineNote = document.getElementById("decline-note");
+            const answerForm = document.getElementById("answer-form");
+            const answerStatus = document.getElementById("answer-status");
+            const sendAnswer = document.getElementById("send-answer");
+
+            answerSessionId.value = sessionId;
+
+            acceptInvite.addEventListener("click", () => {
+                track("povabilo_sprejeto", "4/4", `rezultat_igre=${gameResult}`);
+                inviteActions.hidden = true;
+                inviteCard.hidden = true;
+                inviteLayout.classList.add("resolved");
+                declineNote.hidden = true;
+                responsePanel.hidden = false;
+                document.getElementById("termin").focus({ preventScroll: false });
+            });
+
+            declineInvite.addEventListener("click", () => {
+                track("povabilo_zavrnjeno", "4/4", `rezultat_igre=${gameResult}`);
+                inviteActions.hidden = true;
+                inviteCard.hidden = true;
+                inviteLayout.classList.add("resolved");
+                responsePanel.hidden = true;
+                declineNote.hidden = false;
+            });
+
+            answerForm.addEventListener("submit", async (event) => {
+                event.preventDefault();
+
+                answerStatus.hidden = false;
+                answerStatus.className = "form-status";
+
+                if (!navigator.onLine) {
+                    answerStatus.className = "form-status error";
+                    answerStatus.textContent = "Ni interneta. Poskusi še enkrat, ko bo povezava nazaj.";
+                    return;
+                }
+
+                sendAnswer.disabled = true;
+                sendAnswer.textContent = "Pošiljam ...";
+                answerStatus.textContent = "Pošiljam odgovor ...";
+
+                answerSessionId.value = sessionId;
+                answerGameResult.value = gameResult;
+
+                const controller = new AbortController();
+                const requestTimeout = window.setTimeout(() => controller.abort(), 12000);
+                let response;
+
+                try {
+                    response = await fetch(answerForm.action, {
+                        method: "POST",
+                        body: new FormData(answerForm),
+                        headers: { Accept: "application/json" },
+                        signal: controller.signal
+                    });
+                } catch (error) {
+                    window.clearTimeout(requestTimeout);
+                    answerStatus.className = "form-status error";
+                    answerStatus.textContent = error.name === "AbortError"
+                        ? "Pošiljanje traja predolgo. Preveri povezavo in poskusi še enkrat."
+                        : "Odgovora ni poslalo. Preveri internet in poskusi še enkrat.";
+                    sendAnswer.disabled = false;
+                    sendAnswer.textContent = "Pošlji odgovor";
+                    return;
+                }
+
+                window.clearTimeout(requestTimeout);
+                const responseData = await response.json().catch(() => ({}));
+
+                if (!response.ok) {
+                    const formspreeMessage = responseData.errors
+                        ?.map((error) => error.message)
+                        .filter(Boolean)
+                        .join(" ");
+
+                    answerStatus.className = "form-status error";
+                    answerStatus.textContent = response.status === 429
+                        ? "Preveč poskusov naenkrat. Počakaj minuto in poskusi še enkrat."
+                        : formspreeMessage || `Odgovora ni poslalo (${response.status}). Poskusi še enkrat.`;
+                    sendAnswer.disabled = false;
+                    sendAnswer.textContent = "Pošlji odgovor";
+                    return;
+                }
+
+                answerForm.classList.add("answer-complete");
+                answerStatus.className = "form-status";
+                answerStatus.textContent = "Odgovor je poslan. 🙂";
+            });
+
+        })();
+    </script>
+</body>
+
+</html>
